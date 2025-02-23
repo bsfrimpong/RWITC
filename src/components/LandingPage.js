@@ -267,7 +267,6 @@ const LandingPage = () => {
         <Slideshow images={slideshowImages} />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="text-center">
-          <img src={logo} alt="Logo" className="absolute top-4 left-4 h-16 w-16" /> {/* Add this line to include the logo */}
             <h1 className="text-5xl font-bold mb-4">Empowering STEM Education Through Real-World Problem Solving</h1>
             <p className="text-xl mb-8">Join us in transforming education and creating the next generation of innovators.</p>
             <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center text-lg transition duration-300">
