@@ -22,6 +22,8 @@ import TrainingProgramsSection from './TrainingProgramsSection';
 import GallerySection from './GallerySection';
 import Navbar from './NavBar';
 import ContactSection from './ContactSection';
+import AboutSummarySection from './AboutSummarySection';
+import Footer from './footer';
 
 
 
@@ -280,6 +282,7 @@ const LandingPage = () => {
           </svg>
         </div>
       </header>
+      <AboutSummarySection />
 
       {/* Serwaa Nyarko Success Story */}
       <section id="success-stories" > 
@@ -358,12 +361,7 @@ const LandingPage = () => {
       <ContactSection />
       </section>
       {/* Footer */}
-      <footer className="bg-orange-900 text-white py-12">
-        {/* ... (footer content remains the same) */}
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-lg">&copy; 2024 STEM Education Initiative. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
