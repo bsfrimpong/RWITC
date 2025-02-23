@@ -20,6 +20,10 @@ import water from '../images/Water.jpg'
 import watertalk from '../images/watertalk.jpg'
 import TrainingProgramsSection from './TrainingProgramsSection';
 import GallerySection from './GallerySection';
+import Navbar from './NavBar';
+import ContactSection from './ContactSection';
+
+
 
 
 const Slideshow = ({ images }) => {
@@ -256,8 +260,9 @@ const LandingPage = () => {
   };
   return (
     <div className="min-h-screen bg-orange-50">
+      <Navbar />  {/* Add this line here */}
       {/* Hero Section with Slideshow */}
-      <header className="relative text-white">
+      <header id="home" className="relative text-white">
         {/* ... (header content remains the same) */}
         <Slideshow images={slideshowImages} />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -278,13 +283,16 @@ const LandingPage = () => {
       </header>
 
       {/* Serwaa Nyarko Success Story */}
-      <SuccessStoriesSection />
-
+      <section id="success-stories" > 
+      <SuccessStoriesSection/>
+      </section>
    {/* Training Programs Section */}
+   <section id="programs">
 <TrainingProgramsSection />
+</section>
 
       {/* Post-Training Support */}
-      <section className="py-20 bg-white">
+      <section id="experts" className="py-20 bg-white">
         {/* ... (section content remains the same) */}
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center text-orange-800">Scaling Up Success</h2>
@@ -315,7 +323,7 @@ const LandingPage = () => {
       </section>
 
       {/* Community Impact */}
-      <section className="py-20 bg-orange-100">
+      <section id="community" className="py-20 bg-orange-100">
         {/* ... (section content remains the same) */}
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center text-orange-800">Community and Global Outreach</h2>
@@ -333,8 +341,9 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      <section id="gallery"> 
       <GallerySection />
-
+      </section>
       {/* Innovation Quiz */}
       <section className="py-20 bg-white">
         {/* ... (section content remains the same) */}
@@ -346,7 +355,9 @@ const LandingPage = () => {
           </button>
         </div>
       </section>
-
+      <section id="contact"> 
+      <ContactSection />
+      </section>
       {/* Footer */}
       <footer className="bg-orange-900 text-white py-12">
         {/* ... (footer content remains the same) */}
