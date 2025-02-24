@@ -24,20 +24,31 @@ import Navbar from './NavBar';
 import ContactSection from './ContactSection';
 import AboutSummarySection from './AboutSummarySection';
 import Footer from './footer';
-
+import PartnersSection from './partnersSection'; 
+import ImpactStats from './impactSection';
+import { useLocation } from 'react-router-dom'
 
 
 
 const Slideshow = ({ images }) => {
   // ... (Slideshow component code remains the same)
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const location = useLocation();
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [images.length]);
+  
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   return (
     <div className="relative w-full h-[800px]">
@@ -282,7 +293,10 @@ const LandingPage = () => {
           </svg>
         </div>
       </header>
+      <section id="aboutUs">
       <AboutSummarySection />
+      </section>
+      <ImpactStats />
 
       {/* Serwaa Nyarko Success Story */}
       <section id="success-stories" > 
@@ -360,6 +374,8 @@ const LandingPage = () => {
       <section id="contact"> 
       <ContactSection />
       </section>
+         {/* Partners Section */}
+         <PartnersSection />
       {/* Footer */}
       <Footer />
     </div>

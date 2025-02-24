@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Facebook, 
   Twitter, 
@@ -13,26 +13,42 @@ import {
 } from 'lucide-react';
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home and then scroll
+      navigate('/', { state: { scrollTo: sectionId } });
+    } else {
+      // If already on home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const quickLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', scrollId: 'home' },
     { name: 'About Us', path: '/about' },
-    { name: 'Programs', path: '/programs' },
-    { name: 'Success Stories', path: '/success-stories' },
+    { name: 'Programs', scrollId: 'programs' },
+    { name: 'Success Stories', scrollId: 'success-stories' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Contact', scrollId: 'contact' }
   ];
 
   const programs = [
-    { name: 'ARMBITION', path: '/programs/armbition' },
-    { name: 'TEK INVASION', path: '/programs/tek-invasion' },
-    { name: 'Aspiring Entrepreneurs', path: '/programs/entrepreneurs' },
-    { name: 'Innovation Quiz', path: '/programs/innovation-quiz' }
+    { name: 'ARMBITION', scrollId: 'programs' },
+    { name: 'TEK INVASION', scrollId: 'programs' },
+    { name: 'Aspiring Entrepreneurs', scrollId: 'programs' },
+    { name: 'Innovation Quiz', scrollId: 'programs' }
   ];
 
   const contact = {
-    email: 'info@rtic.com',
-    phone: '+233 XX XXX XXXX',
-    address: 'Location, Accra, Ghana'
+    email: 'stephenfrimpongyg@gmail.com',
+    phone: '+233 24 675 6644',
+    address: 'Location, Kumasi, Ghana'
   };
 
   const socialMedia = [
@@ -70,7 +86,6 @@ const Footer = () => {
 
   return (
     <footer className="bg-orange-900 text-white">
-      {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Column */}
@@ -80,7 +95,6 @@ const Footer = () => {
               Transforming Ghana's entrepreneurial landscape through innovation, 
               education, and real-world problem-solving.
             </p>
-            {/* Social Media Icons */}
             <div className="flex space-x-4">
               {socialMedia.map((social) => (
                 <a
@@ -103,13 +117,23 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.path}
-                    className="text-orange-200 hover:text-white transition-colors duration-300 flex items-center"
-                  >
-                    <ChevronRight className="h-4 w-4 mr-1" />
-                    {link.name}
-                  </Link>
+                  {link.path ? (
+                    <Link 
+                      to={link.path}
+                      className="text-orange-200 hover:text-white transition-colors duration-300 flex items-center"
+                    >
+                      <ChevronRight className="h-4 w-4 mr-1" />
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(link.scrollId)}
+                      className="text-orange-200 hover:text-white transition-colors duration-300 flex items-center"
+                    >
+                      <ChevronRight className="h-4 w-4 mr-1" />
+                      {link.name}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -121,13 +145,13 @@ const Footer = () => {
             <ul className="space-y-2">
               {programs.map((program) => (
                 <li key={program.name}>
-                  <Link 
-                    to={program.path}
+                  <button
+                    onClick={() => scrollToSection(program.scrollId)}
                     className="text-orange-200 hover:text-white transition-colors duration-300 flex items-center"
                   >
                     <ChevronRight className="h-4 w-4 mr-1" />
                     {program.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -164,7 +188,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-orange-800">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">

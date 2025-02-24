@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from '../images/logoss.png'; 
+import logo from '../images/rtic.png'; 
 
 const Navbar = () => {
     const scrollToSection = (sectionId) => {
@@ -29,11 +29,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={logo} alt="Logo" className="h-12 w-12" />
+            <img src={logo} alt="Logo" className="h-12 w-18" />
             <span className={`ml-2 font-bold text-xl ${
               isScrolled ? 'text-orange-800' : 'text-white'
             }`}>
-              STEM Initiative
+            
             </span>
           </div>
 
@@ -42,6 +42,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             {[
               { id: 'home', label: 'Home' },
+              { id: 'aboutUs', label: 'About Us' },
               { id: 'success-stories', label: 'Success Stories' },
               { id: 'programs', label: 'Programs' },
               { id: 'experts', label: 'Elevate' },

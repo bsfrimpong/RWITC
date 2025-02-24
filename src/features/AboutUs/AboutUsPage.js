@@ -1,11 +1,13 @@
 import table from '../../images/table.jpg';
+import TrainersMentorsSection from './trainers';
 import Footer from './../../components/footer';
 import td from '../../images/rabs.jpg';
 import jesse from '../../images/Team/anim.jpg';
 import Enya from '../../images/Team/enya.jpg';
-import stephen from '../../images/Team/stephen.jpg';
-import claudia from '../../images/Team/claudias.jpg';
+import stephen from '../../images/Team/stephentrim.jpg';
+import claudia from '../../images/Team/claudiatrim.jpg';
 import caleb from '../../images/Team/caleb.jpg';
+import patricia from '../../images/Team/patriciatrim.jpg';
 import armbition from '../../images/Soldering.jpg';
 import tekInvasion from '../../images/invasion.jpg';
 import React, { useState } from 'react';
@@ -51,38 +53,46 @@ const AboutPage = () => {
       name: "Dr. E.A Xemalordzo",
       role: "Executive Director",
       image: Enya,
-      bio: "With over 5 years of experience in tech innovation and education, Stephen leads our strategic initiatives.",
-      expertise: ["Innovation Strategy", "Education Technology", "Program Development"]
+      bio: "With over 15 years of experience as a senior lecturer at Kwame Nkrumah University of Science and Technology, Department of Marketing & Corporate Strategy, he leads our strategic initiatives.",
+      expertise: ["Corporate Strategy", "Critical Thinking", "Program Development"]
     },
     {
       name: "Jesse Anim",
       role: "Technical Director",
       image: jesse,
-      bio: "A seasoned engineer with expertise in product development and technical education.",
+      bio: "A seasoned software engineer with expertise in product development, Cyber security and technical education driving innovation and excellence in technology solutions.",
       expertise: ["Engineering", "Product Development", "Technical Training"]
     },
     {
       name: "Caleb Agyemang-Duah",
       role: "Program Manager",
       image: caleb,
-      bio: "Specializing in curriculum development and program implementation across educational levels.",
+      bio: "a results-driven Project Manager specializing in curriculum development, program implementation, and event development, ensuring seamless execution and impactful outcomes.",
       expertise: ["Program Management", "Curriculum Design", "Student Engagement"]
     },
     {
       name: "Stephen B. Frimpong",
       role: "Innovation Lead",
       image: stephen,
-      bio: "Drives our innovation initiatives and mentorship programs with extensive startup experience.",
+      bio: "drives our innovation initiatives and mentorship programs, leveraging extensive startup experience to foster creativity, problem-solving, and growth.",
       expertise: ["Innovation", "Mentorship", "Startup Development"]
     },
     {
       name: "Claudia Afia Gyanea Tawiah",
       role: "Marketing",
       image: claudia,
-      bio: "Extending Our Reach and partnerships",
+      bio: "creative and data-driven Digital Marketing Manager, specializing in online brand growth, content strategy, and performance marketing to drive engagement and business success.",
       expertise: ["Social Media Management", "Partnership Development", "Event Management"]
-    }
+    },
+    {
+      name: "Patricia Enyonam",
+      role: "Business Development Officer",
+      image: patricia,
+      bio: "specializing in crafting compelling proposals, securing funding, and fostering strategic partnerships",
+      expertise: ["Innovation", "Mentorship", "Startup Development"]
+    },
   ];
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -127,6 +137,31 @@ const AboutPage = () => {
                 className="w-full h-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+        {/* Values Section with Visual Elements */}
+        <section className="bg-gradient-to-b from-orange-50 to-white py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-orange-800 mb-12 text-center">Our Values</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Extraordinary Expectation", icon: Target, description: "Setting and achieving ambitious goals" },
+              { title: "Resilience", icon: Shield, description: "Persisting through challenges" },
+              { title: "Project Continuity", icon: Clock, description: "Ensuring sustainable impact" },
+              { title: "Inclusivity & Collaboration", icon: Users, description: "Fostering diverse partnerships" },
+              { title: "Humble Confidence", icon: Heart, description: "Leading with expertise and openness" },
+              { title: "Creative Energy", icon: Lightbulb, description: "Driving dynamic innovation" }
+            ].map((value, index) => (
+              <div 
+                key={index} 
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1"
+              >
+                <value.icon className="w-8 h-8 text-orange-500 mb-3" />
+                <h3 className="text-xl font-bold text-orange-800 mb-2">{value.title}</h3>
+                <p className="text-orange-700">{value.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -185,65 +220,44 @@ const AboutPage = () => {
 
       {/* Team Section */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-orange-800 mb-12 text-center">Meet Our Team</h2>
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
-            {team.map((member, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
-              >
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-65 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl font-bold text-orange-800 mb-1">{member.name}</h3>
-                  <p className="text-orange-600 mb-2 text-sm">{member.role}</p>
-                  <p className="text-orange-700 text-sm mb-3">{member.bio}</p>
-                  <div className="space-y-1">
-                    {member.expertise.map((skill, i) => (
-                      <span 
-                        key={i} 
-                        className="inline-block bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full mr-1 mb-1"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold text-orange-800 mb-12 text-center">Meet Our Team</h2>
+    <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
+      {team.map((member, index) => (
+        <div 
+          key={index} 
+          className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+        >
+          <div className="aspect-[4/3] relative">
+            <img 
+              src={member.image} 
+              alt={member.name} 
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+          </div>
+          <div className="p-4">
+            <h3 className="text-xl font-bold text-orange-800 mb-1">{member.name}</h3>
+            <p className="text-orange-600 mb-2 text-sm">{member.role}</p>
+            <p className="text-orange-700 text-sm mb-3">{member.bio}</p>
+            <div className="space-y-1">
+              {member.expertise.map((skill, i) => (
+                <span 
+                  key={i} 
+                  className="inline-block bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full mr-1 mb-1"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+      <TrainersMentorsSection />
 
-      {/* Values Section with Visual Elements */}
-      <section className="bg-gradient-to-b from-orange-50 to-white py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-orange-800 mb-12 text-center">Our Values</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Extraordinary Expectation", icon: Target, description: "Setting and achieving ambitious goals" },
-              { title: "Resilience", icon: Shield, description: "Persisting through challenges" },
-              { title: "Project Continuity", icon: Clock, description: "Ensuring sustainable impact" },
-              { title: "Inclusivity & Collaboration", icon: Users, description: "Fostering diverse partnerships" },
-              { title: "Humble Confidence", icon: Heart, description: "Leading with expertise and openness" },
-              { title: "Creative Energy", icon: Lightbulb, description: "Driving dynamic innovation" }
-            ].map((value, index) => (
-              <div 
-                key={index} 
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1"
-              >
-                <value.icon className="w-8 h-8 text-orange-500 mb-3" />
-                <h3 className="text-xl font-bold text-orange-800 mb-2">{value.title}</h3>
-                <p className="text-orange-700">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
        {/* Footer */}
        <Footer />
     </div>
