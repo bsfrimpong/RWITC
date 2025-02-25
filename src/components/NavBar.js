@@ -62,7 +62,7 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition duration-300">
+            <button onClick={() => scrollToSection('aboutUs')} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition duration-300">
               Get Started
             </button>
           </div>
@@ -100,9 +100,12 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
-            <button className="w-full mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition duration-300">
-              Get Started
-            </button>
+           <button 
+  onClick={() => scrollToSection('aboutUs')} 
+  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition duration-300"
+>
+  Get Started
+</button>
           </div>
         )}
       </div>

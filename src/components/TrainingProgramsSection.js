@@ -1,3 +1,4 @@
+import biogas from '../images/Biogas.jpg';
 import React from 'react';
 import { School, Calendar, BookOpen, Clock } from 'lucide-react';
 
@@ -52,7 +53,7 @@ const TrainingProgramsSection = () => {
         "Industry projects",
         "Internship opportunities"
       ],
-      formUrl: "https://forms.gle/your-postshs-form-url", // Replace with actual Google Form URL
+      formUrl: "https://forms.gle/9wUzVQFZQTHBb9c86", // Replace with actual Google Form URL
       image: "url(/api/placeholder/800/600)"
     }
   ];
