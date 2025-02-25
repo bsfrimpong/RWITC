@@ -34,11 +34,6 @@ const PartnersSection = () => {
       logo: mpact,
       description: "Curriculum Design and Entrepreneurship training"
     },
-    {
-      name: "Training Partner",
-      logo: mpact,
-      description: "Curriculum Design and Entrepreneurship training"
-    },
    
   ];
 

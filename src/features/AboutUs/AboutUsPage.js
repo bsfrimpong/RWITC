@@ -8,8 +8,10 @@ import stephen from '../../images/Team/stephentrim.jpg';
 import claudia from '../../images/Team/claudiatrim.jpg';
 import caleb from '../../images/Team/caleb.jpg';
 import patricia from '../../images/Team/patriciatrim.jpg';
+import chris from '../../images/Team/chris.jpg';
 import armbition from '../../images/Soldering.jpg';
 import tekInvasion from '../../images/invasion.jpg';
+import zack from '../../images/Team/zack.jpg';
 import React, { useState } from 'react';
 import { 
   Target, Shield, Clock, Users, Heart, 
@@ -79,17 +81,31 @@ const AboutPage = () => {
     },
     {
       name: "Claudia Afia Gyanea Tawiah",
-      role: "Marketing",
+      role: "Digital Marketing",
       image: claudia,
       bio: "creative and data-driven Digital Marketing Manager, specializing in online brand growth, content strategy, and performance marketing to drive engagement and business success.",
       expertise: ["Social Media Management", "Partnership Development", "Event Management"]
     },
     {
-      name: "Patricia Enyonam",
+      name: "Patricia Enyonam Vigbedor",
       role: "Business Development Officer",
       image: patricia,
       bio: "specializing in crafting compelling proposals, securing funding, and fostering strategic partnerships",
       expertise: ["Innovation", "Mentorship", "Startup Development"]
+    },
+    {
+      name: "Christlove Opoku Appiah",
+      role: "Strategy and Marketing",
+      image: chris,
+      bio: "Strategic and marketing professional with expertise in market analysis, brand positioning, and growth-driven strategies to drive business success.",
+      expertise: ["Market analysis", "brand positioning", "Growth Strategy"]
+    },
+    {
+      name: "Zackaria Lahi Ayatul",
+      role: "Head of Hardware Innovation",
+      image: zack,
+      bio: "Zack brings over a decade of experience in hardware development, leading hands-on training programs that empower the next generation of innovators. His expertise spans electronics, mechanics, and mechatronics.",
+      expertise: ["Market analysis", "brand positioning", "Growth Strategy"]
     },
   ];
 
@@ -222,7 +238,7 @@ const AboutPage = () => {
       <section className="py-16">
   <div className="container mx-auto px-4">
     <h2 className="text-3xl font-bold text-orange-800 mb-12 text-center">Meet Our Team</h2>
-    <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
       {team.map((member, index) => (
         <div 
           key={index} 
