@@ -1,3 +1,4 @@
+import Footer from './../../components/footer';
 import React, { useState, useEffect } from 'react';
 import { 
   ChevronLeft, 
@@ -328,6 +329,8 @@ const GalleryPage = () => {
           onClose={() => setSelectedImage(null)} 
         />
       )}
+  {/* Footer */}
+         <Footer />
     </div>
   );
 };
