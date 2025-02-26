@@ -350,9 +350,15 @@ const LandingPage = () => {
             <div className="md:w-1/2">
               <h3 className="text-3xl font-semibold mb-6 text-orange-700">Expanding Our Reach</h3>
               <p className="mb-8 text-lg text-orange-900">We're offering training to selected deprived and local communities for free, enabling youth to build solutions tailored to their community's needs.</p>
-              <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center text-lg transition duration-300">
-                Donate Now <DollarSign className="ml-2" />
-              </button>
+              <a 
+  href="https://forms.gle/mcFgJPvV3muQBw6P7" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center text-lg transition duration-300"
+>
+  Donate Now <DollarSign className="ml-2" />
+</a>
+              
             </div>
           </div>
         </div>

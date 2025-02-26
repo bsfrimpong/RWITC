@@ -1,6 +1,8 @@
 import tekdevisal from '../images/Partners/td.png';
 import toddlerwalks from '../images/Partners/tw.png';
 import mpact from '../images/Partners/mpact.jpg';
+import iot from '../images/Partners/iot.jpg';
+import stemaide from '../images/Partners/stemaide.png';
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -34,7 +36,16 @@ const PartnersSection = () => {
       logo: mpact,
       description: "Curriculum Design and Entrepreneurship training"
     },
-   
+    {
+      name: "Training Partner",
+      logo: iot,
+      description: "IoT training"
+    },
+    {
+      name: "Training Partner",
+      logo: stemaide,
+      description: "Stem Kits"
+    },
   ];
 
   return (
