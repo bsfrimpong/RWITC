@@ -67,7 +67,7 @@ const Footer = () => {
     { 
       name: 'Instagram', 
       icon: Instagram, 
-      url: 'https://www.instagram.com/realworldtech_ic?igsh=dm9xYjBqdG95bXBu&utm_source=qr',
+      url: 'https://www.instagram.com/realworldtechic?igsh=YXBzZHJ4cm5xdW01',
       color: 'hover:text-pink-600'
     },
     { 
@@ -79,7 +79,7 @@ const Footer = () => {
     { 
       name: 'LinkedIn', 
       icon: Linkedin, 
-      url: 'https://linkedin.com/company/rtic',
+      url: 'https://www.linkedin.com/company/realworld-tech?trk=blended-typeahead',
       color: 'hover:text-blue-700'
     }
   ];
