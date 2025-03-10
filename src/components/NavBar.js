@@ -85,13 +85,14 @@ const Navbar = () => {
           <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
             {[
               { id: 'home', label: 'Home' },
+              { id: 'aboutUs', label: 'About Us' },
               { id: 'success-stories', label: 'Success Stories' },
               { id: 'programs', label: 'Programs' },
-              { id: 'experts', label: 'Scale' },
+              { id: 'experts', label: 'Elevate' },
               { id: 'community', label: 'Donate' },
               { id: 'gallery', label: 'Gallery' },
               { id: 'contact', label: 'Contact' }
-            ].map((item) => (
+             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
