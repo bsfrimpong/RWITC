@@ -56,19 +56,19 @@ const ImpactStats = () => {
   const stats = [
     {
       icon: School,
-      number: 3,
+      number: 5,
       label: "Schools Trained",
       description: "Schools empowered with STEM education"
     },
     {
       icon: Lightbulb,
-      number: 8,
+      number: 10,
       label: "Projects Built",
       description: "Innovative solutions developed by students"
     },
     {
       icon: Calendar,
-      number: 5,
+      number: 10,
       label: "Events Organized",
       description: "Workshops, competitions, and exhibitions"
     },
