@@ -33,7 +33,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-orange-800">Address</h4>
-                    <p className="text-orange-700">Plot 3 Block 12, Aboabo Extension</p>
+                    <p className="text-orange-700">Kotoko Ave, Accra, Ghana</p>
                   </div>
                 </div>
 
