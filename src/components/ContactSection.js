@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail, Phone, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
 
 const ContactSection = () => {
-  const email = "stephenfrimpongyg@gmail.com";
+  const email = "realworldtechinnovationcenter@gmail.com";
   const phoneNumber = "+233246756644";
   const whatsappMessage = "Hello! I'm interested in learning more about your STEM education programs.";
 
