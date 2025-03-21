@@ -12,6 +12,7 @@ import chris from '../../images/Team/chris.jpg';
 import armbition from '../../images/Soldering.jpg';
 import tekInvasion from '../../images/invasion.jpg';
 import zack from '../../images/Team/zack.jpg';
+import alberta from '../../images/Team/Alberta.jpg';
 import React, { useState } from 'react';
 import { 
   Target, Shield, Clock, Users, Heart, 
@@ -104,6 +105,13 @@ const AboutPage = () => {
       name: "Zackaria Lahi Ayatul",
       role: "Head of Hardware Innovation",
       image: zack,
+      bio: "Zack brings over a decade of experience in hardware development, leading hands-on training programs that empower the next generation of innovators. His expertise spans electronics, mechanics, and mechatronics.",
+      expertise: ["Market analysis", "brand positioning", "Growth Strategy"]
+    },
+    {
+      name: "Mrs. Alberta C. Mensah",
+      role: "Audit and Finance",
+      image: alberta,
       bio: "Zack brings over a decade of experience in hardware development, leading hands-on training programs that empower the next generation of innovators. His expertise spans electronics, mechanics, and mechatronics.",
       expertise: ["Market analysis", "brand positioning", "Growth Strategy"]
     },
