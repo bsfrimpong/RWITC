@@ -88,7 +88,7 @@ const ContactSection = () => {
           {/* Map */}
           <div className="h-[400px] rounded-2xl overflow-hidden shadow-lg transform transition-all duration-300 hover:shadow-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d629.1223216125795!2d-1.5989459454456865!3d6.7082529667392246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfe779f8462c31eb%3A0xbf52bbfb18caba7e!2sAIRPORT%20ROUND%20ABOUT%20TotalEnergies%20Service%20Station!5e0!3m2!1sen!2sgh!4v1740318644016!5m2!1sen!2sgh"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.966971683201!2d-0.21379292359383792!3d5.571901494408671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9b33e3d94043%3A0xf908a29eca19bfde!2sReal-world%20tech%20Innovation%20Center!5e0!3m2!1sen!2sgh!4v1742580981193!5m2!1sen!2sgh"
               width="100%"
               height="100%"
               style={{ border: 0 }}
