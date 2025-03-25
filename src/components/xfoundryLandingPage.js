@@ -16,7 +16,7 @@ const XFoundryLanding = () => {
     {
       id: 1,
       title: "X Foundry 1.0",
-      date: "December 2023",
+      date: "5th March 2025",
       description: "Our inaugural X Foundry event brought together innovators, entrepreneurs, and tech enthusiasts for an immersive problem-solving experience.",
       image: pastEvent1,
       socialLinks: [
