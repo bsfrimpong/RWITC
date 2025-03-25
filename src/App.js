@@ -5,6 +5,7 @@ import ContributeSHS from './features/shs/contributeShs';
 import ContributeJHS from './features/jhs/contributeJhs';
 import GalleryPage from './features/Gallery/GalleryPage';
 import AboutPage from './features/AboutUs/AboutUsPage';
+import XFoundryLanding from './components/xfoundryLandingPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/contribute-jhs" element={<ContributeJHS />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/xfoundry" element={<XFoundryLanding />} />
       </Routes>
     </Router>
   );

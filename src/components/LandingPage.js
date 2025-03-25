@@ -26,9 +26,8 @@ import AboutSummarySection from './AboutSummarySection';
 import Footer from './footer';
 import PartnersSection from './partnersSection'; 
 import ImpactStats from './impactSection';
+import XFoundryButton from '../components/XfoundryButton';
 import { useLocation } from 'react-router-dom'
-
-
 
 const Slideshow = ({ images }) => {
   // ... (Slideshow component code remains the same)
@@ -384,6 +383,9 @@ const LandingPage = () => {
          <PartnersSection />
       {/* Footer */}
       <Footer />
+      
+      {/* XFoundry Button - Placed here to float on all pages */}
+      <XFoundryButton />
     </div>
   );
 };
