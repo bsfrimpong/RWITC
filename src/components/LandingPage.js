@@ -27,6 +27,7 @@ import Footer from './footer';
 import PartnersSection from './partnersSection'; 
 import ImpactStats from './impactSection';
 import XFoundryButton from '../components/XfoundryButton';
+import XInvasionButton from '../components/xinvasionButton';
 import { useLocation } from 'react-router-dom'
 
 const Slideshow = ({ images }) => {
@@ -365,17 +366,46 @@ const LandingPage = () => {
       <section id="gallery"> 
       <GallerySection />
       </section>
-      {/* Innovation Quiz */}
-      <section className="py-20 bg-white">
-        {/* ... (section content remains the same) */}
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-8 text-orange-800">Annual Innovation and Problem-Solving Quiz</h2>
-          <p className="text-xl mb-12 text-orange-700">Join our exciting competition where schools tackle real industry challenges and showcase their innovative solutions!</p>
-          <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center text-lg transition duration-300">
-            Learn More <ChevronDown className="ml-2" />
-          </button>
-        </div>
-      </section>
+     {/* Events Section (Updated with Links) */}
+<section className="py-20 bg-white">
+  <div className="container mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold mb-8 text-orange-800">Events</h2>
+    <p className="text-xl mb-12 text-orange-700">Participate in our exciting innovation competitions and challenges!</p>
+    
+    <div className="grid md:grid-cols-3 gap-8 mb-12">
+      {/* X Foundry */}
+      <div className="bg-orange-50 p-6 rounded-lg shadow-md">
+        <h3 className="text-2xl font-bold mb-4 text-orange-700">X Foundry</h3>
+        <p className="mb-4">Our innovation incubator for transforming creative ideas into impactful solutions.</p>
+        <Link to="/xfoundry" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center text-md transition duration-300">
+          Learn More <ChevronRight className="ml-2 h-4 w-4" />
+        </Link>
+      </div>
+      
+      {/* X Invasion */}
+      <div className="bg-orange-50 p-6 rounded-lg shadow-md">
+        <h3 className="text-2xl font-bold mb-4 text-orange-700">X Invasion</h3>
+        <p className="mb-4">Competition where teams tackle industry challenges with innovative approaches.</p>
+        <Link to="/xinvasion" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center text-md transition duration-300">
+          Learn More <ChevronRight className="ml-2 h-4 w-4" />
+        </Link>
+      </div>
+      
+      {/* X Quiz */}
+      <div className="bg-orange-50 p-6 rounded-lg shadow-md">
+        <h3 className="text-2xl font-bold mb-4 text-orange-700">X Quiz</h3>
+        <p className="mb-4">SHS competition showcasing problem-solving skills and innovative thinking.</p>
+        <Link to="/xquiz" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center text-md transition duration-300">
+          Learn More <ChevronRight className="ml-2 h-4 w-4" />
+        </Link>
+      </div>
+    </div>
+    
+    <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center text-lg transition duration-300">
+      See All Events <ChevronDown className="ml-2 h-5 w-5" />
+    </button>
+  </div>
+</section>
       <section id="contact"> 
       <ContactSection />
       </section>
@@ -386,6 +416,7 @@ const LandingPage = () => {
       
       {/* XFoundry Button - Placed here to float on all pages */}
       <XFoundryButton />
+      <XInvasionButton />
     </div>
   );
 };

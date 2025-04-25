@@ -17,7 +17,7 @@ const XFoundryLanding = () => {
       id: 1,
       title: "X Foundry 1.0",
       date: "5th March 2025",
-      description: "Our inaugural X Foundry event brought together innovators, entrepreneurs, and tech enthusiasts for an immersive problem-solving experience.",
+      description: "Our inaugural X Foundry event brought together innovators, entrepreneurs, and tech enthusiasts for an immersive discussion on problem-solving experience.",
       image: pastEvent1,
       socialLinks: [
         { platform: "Instagram", icon: Instagram, url: "https://www.instagram.com/realworldtechic?igsh=YXBzZHJ4cm5xdW01" },
@@ -301,10 +301,11 @@ const XFoundryLanding = () => {
           </a>
           <div className="mt-8 flex items-center justify-center space-x-3 text-sm">
             <MapPin className="h-4 w-4" />
-            <span>RTIC Hub, Kumasi, Ghana</span>
+            <span>CARISCA Innovations Lab, Postgraduate block C</span>
             <span className="mx-2">•</span>
             <Calendar className="h-4 w-4" />
-            <span>Starting July 2025</span>
+            <span>Wednesday, 26th March, 2025</span>
+            <span>10:30 am</span>
           </div>
         </div>
       </section>

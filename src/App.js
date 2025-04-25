@@ -6,6 +6,8 @@ import ContributeJHS from './features/jhs/contributeJhs';
 import GalleryPage from './features/Gallery/GalleryPage';
 import AboutPage from './features/AboutUs/AboutUsPage';
 import XFoundryLanding from './components/xfoundryLandingPage';
+import XInvasionLanding from './components/xinvasionLandingPage';
+import XQuizLanding from './components/xQuizLanding'; // Add this import
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/xfoundry" element={<XFoundryLanding />} />
+        <Route path="/xinvasion" element={<XInvasionLanding />} />
+        <Route path="/xquiz" element={<XQuizLanding />} /> {/* Add this route */}
       </Routes>
     </Router>
   );
