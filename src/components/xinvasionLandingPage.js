@@ -20,7 +20,7 @@ const schools = {
     name: "University of Ghana",
     logo: ugLogo,
     venue: "UG School of Engineering Sciences",
-    date: "10th May, 2025",
+    date: "coming Soon",
     registrationDeadline: "25th April, 2025",
     active: true
   },
@@ -28,7 +28,7 @@ const schools = {
     name: "Kwame Nkrumah University of Science and Technology",
     logo: knustLogo,
     venue: "CARISCA Innovations Lab, KNUST School of Business",
-    date: "24th May, 2025",
+    date: "Coming Soon",
     registrationDeadline: "10th May, 2025",
     active: true
   },
@@ -1283,46 +1283,54 @@ const XInvasionLanding = () => {
             )}
             
             {/* FAQ Section */}
-            <section className="py-16 bg-white">
-              <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-                  Frequently Asked Questions
-                </h2>
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  {[
-                    {
-                      question: "Who can participate in X Invasion?",
-                      answer: "Current students from participating universities can join. Teams must have 5 members with a maximum of 3 engineering students per team to encourage diverse perspectives."
-                    },
-                    {
-                      question: "Do we need a complete product to apply?",
-                      answer: "No, you only need an innovative idea or approach. The competition is designed to help you develop your concept into a prototype through mentorship and resources."
-                    },
-                    {
-                      question: "Is there a registration fee?",
-                      answer: "No, participation in X Invasion is completely free for all eligible students."
-                    },
-                    {
-                      question: "What if I don't have a team yet?",
-                      answer: "You can register as an individual, and we'll help match you with team members based on complementary skills and interests before the competition begins."
-                    },
-                    {
-                      question: "Do we retain ownership of our ideas?",
-                      answer: "Yes, teams retain full intellectual property rights to their ideas and innovations. The competition organizers and sponsors may request right of first refusal for investment opportunities."
-                    },
-                    {
-                      question: "What kind of support will teams receive?",
-                      answer: "Teams will receive mentorship, technical support, access to workspace and resources, and MVP funding to develop their ideas during the competition."
-                    }].map((faq, index) => (
-                        <div key={index} className="mb-6 bg-orange-50 p-6 rounded-lg hover:shadow-md transition-shadow duration-300">
-                          <h3 className="text-xl font-bold text-orange-800 mb-2">{faq.question}</h3>
-                          <p className="text-orange-700">{faq.answer}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                
+<section className="py-16 bg-white">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
+      Frequently Asked Questions
+    </h2>
+    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {[
+        {
+          question: "Who can participate in X Invasion?",
+          answer: "Current students from participating universities can join. Teams must have 5 members with a maximum of 3 engineering students per team to encourage diverse perspectives."
+        },
+        {
+          question: "Do we need a complete product to apply?",
+          answer: "No, you only need an innovative idea or approach. The competition is designed to help you develop your concept into a prototype through mentorship and resources."
+        },
+        {
+          question: "Is there a registration fee?",
+          answer: "No, participation in X Invasion is completely free for all eligible students."
+        },
+        {
+          question: "What if I don't have a team yet?",
+          answer: "You can register as an individual, and we'll help match you with team members based on complementary skills and interests before the competition begins."
+        },
+        {
+          question: "Do we retain ownership of our ideas?",
+          answer: "Yes, teams retain full intellectual property rights to their ideas and innovations. The competition organizers and sponsors may request right of first refusal for investment opportunities."
+        },
+        {
+          question: "What kind of support will teams receive?",
+          answer: "Teams will receive mentorship, technical support, access to workspace and resources, and MVP funding to develop their ideas during the competition."
+        },
+        {
+          question: "What happens if we win the Idea Bank Track?",
+          answer: "Winners of the Idea Bank Track at each university will have the opportunity to establish a campus branch of the selected project with funding from our investors. The winning team leader will serve as branch CEO, managing operations while receiving a share of profits and potentially a salary depending on the specific project's terms."
+        },
+        {
+          question: "Can we continue with the project after graduation?",
+          answer: "Absolutely! The overall track winner from the inter-university finals will be offered a continued leadership role as CEO even after graduation. This provides a direct pathway from student entrepreneur to professional business leader running a real venture that originated from the competition."
+        }
+      ].map((faq, index) => (
+        <div key={index} className="mb-6 bg-orange-50 p-6 rounded-lg hover:shadow-md transition-shadow duration-300">
+          <h3 className="text-xl font-bold text-orange-800 mb-2">{faq.question}</h3>
+          <p className="text-orange-700">{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
                 {/* Partners and Sponsors */}
                 <section className="py-16 bg-orange-50">
                   <div className="container mx-auto px-4">
