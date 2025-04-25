@@ -21,7 +21,7 @@ const schools = {
     logo: ugLogo,
     venue: "UG School of Engineering Sciences",
     date: "coming Soon",
-    registrationDeadline: "25th April, 2025",
+    registrationDeadline: "Coming SOon",
     active: true
   },
   knust: {
@@ -29,7 +29,7 @@ const schools = {
     logo: knustLogo,
     venue: "CARISCA Innovations Lab, KNUST School of Business",
     date: "Coming Soon",
-    registrationDeadline: "10th May, 2025",
+    registrationDeadline: "Coming Soon",
     active: true
   },
   ucc: {
