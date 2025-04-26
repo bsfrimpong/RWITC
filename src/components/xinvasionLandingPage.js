@@ -1339,18 +1339,18 @@ const XInvasionLanding = () => {
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                       {[
-                        { name: "MTN Ghana", category: "Industry Partner" },
-                        { name: "Google for Startups", category: "Technology Partner" },
-                        { name: "IBM Africa", category: "Technology Partner" },
+                        // { name: "MTN Ghana", category: "Industry Partner" },
+                        // { name: "Google for Startups", category: "Technology Partner" },
+                        // { name: "IBM Africa", category: "Technology Partner" },
                         { name: "Tek-Devisal", category: "Industry Partner" },
                         { name: "IoT Network", category: "Technology Partner" },
-                        { name: "Injaro Investments", category: "Investor" },
-                        { name: "Venture Capital Trust Fund", category: "Investor" },
-                        { name: "MEST Africa", category: "Tech Hub" },
-                        { name: "Impact Hub Accra", category: "Tech Hub" },
-                        { name: "NEIP", category: "Government" },
-                        { name: "Ministry for Youth", category: "Government" },
-                        { name: "YEA", category: "Government" }
+                        // { name: "Injaro Investments", category: "Investor" },
+                        // { name: "Venture Capital Trust Fund", category: "Investor" },
+                        // { name: "MEST Africa", category: "Tech Hub" },
+                        // { name: "Impact Hub Accra", category: "Tech Hub" },
+                        // { name: "NEIP", category: "Government" },
+                        // { name: "Ministry for Youth", category: "Government" },
+                        // { name: "YEA", category: "Government" }
                       ].map((partner, index) => (
                         <div key={index} className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
                           <div className="h-16 flex items-center justify-center mb-4">
