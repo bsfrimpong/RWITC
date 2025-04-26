@@ -416,7 +416,7 @@ const LandingPage = () => {
       
       {/* XFoundry Button - Placed here to float on all pages */}
       <XFoundryButton />
-      <XInvasionButton />
+      {/* <XInvasionButton /> */}
     </div>
   );
 };
