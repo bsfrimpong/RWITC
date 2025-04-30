@@ -1344,6 +1344,7 @@ const XInvasionLanding = () => {
                         // { name: "IBM Africa", category: "Technology Partner" },
                         { name: "Tek-Devisal", category: "Industry Partner" },
                         { name: "IoT Network", category: "Technology Partner" },
+                        { name: "ToddlerWalks", category: "Training Partner" },
                         // { name: "Injaro Investments", category: "Investor" },
                         // { name: "Venture Capital Trust Fund", category: "Investor" },
                         // { name: "MEST Africa", category: "Tech Hub" },
