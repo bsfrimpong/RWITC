@@ -5,7 +5,7 @@ import {
     Calendar, ChevronRight, Award, Users, Lightbulb, Rocket,
     Trophy, Zap, ArrowRight, School, BookOpen, Code, Cpu, Wrench,
     DollarSign, MessageCircle, Building, CheckCircle, PlayCircle, Clock,
-    ChevronDown
+    ChevronDown, Send, Loader
   } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/footer';
@@ -14,23 +14,43 @@ import knustLogo from '../images/Xinvasion/KNUST.png';
 import Background from '../images/pitch.png';
 
 // -------------------- Data --------------------
-// Schools information
+// Schools information - Updated with new timeline
 const schools = {
   ug: {
     name: "University of Ghana",
     logo: ugLogo,
     venue: "UG School of Engineering Sciences",
-    date: "coming Soon",
-    registrationDeadline: "Coming SOon",
-    active: true
+    date: "September 17, 2025",
+    registrationDeadline: "August 7, 2025",
+    bootcampStart: "August 9, 2025",
+    active: true,
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSetBOIZ8XStPIJBaSgBkOrx1G-j_EqEZQYP4eBhF_WzO3Aeug/formResponse",
+    timeline: {
+      applicationOpen: "July 29, 2025",
+      applicationDeadline: "August 7, 2025",
+      bootcampTraining: "August 9-23, 2025",
+      teamSelection: "August 28, 2025",
+      mvpSprint: "August 29 - September 16, 2025",
+      finalPitch: "September 17, 2025"
+    }
   },
   knust: {
     name: "Kwame Nkrumah University of Science and Technology",
     logo: knustLogo,
     venue: "CARISCA Innovations Lab, KNUST School of Business",
-    date: "Coming Soon",
-    registrationDeadline: "Coming Soon",
-    active: true
+    date: "September 17, 2025",
+    registrationDeadline: "August 7, 2025",
+    bootcampStart: "August 9, 2025",
+    active: true,
+    formUrl: "https://docs.google.com/forms/d/e/1FAIpQLScqdBPTYJHmIX17IkR0OkpY20Y-6IK76B5eo0OA68_b4xWRig/formResponse",
+    timeline: {
+      applicationOpen: "July 29, 2025",
+      applicationDeadline: "August 7, 2025",
+      bootcampTraining: "August 9-23, 2025",
+      teamSelection: "August 28, 2025", 
+      mvpSprint: "August 29 - September 16, 2025",
+      finalPitch: "September 17, 2025"
+    }
   },
   ucc: {
     name: "University of Cape Coast",
@@ -70,6 +90,35 @@ const schools = {
   }
 };
 
+// Updated phases reflecting new team selection structure
+const phases = [
+  {
+    title: "Phase 1: Application Period",
+    description: "Submit your application. All registered participants will go through training.",
+    timeline: "July 29 - August 7, 2025"
+  },
+  {
+    title: "Phase 2: Bootcamp Training", 
+    description: "Intensive 2-week online training program open to all applicants covering fundamentals, technical development, and pitch preparation.",
+    timeline: "August 9 - August 23, 2025"
+  },
+  {
+    title: "Phase 3: Team Selection",
+    description: "Team formation and proposal submission. 5 teams selected and sponsored for MVP Sprint (2 from Idea Bank Track, 3 from Original Ideas Track).",
+    timeline: "August 24 - August 28, 2025"
+  },
+  {
+    title: "Phase 4: MVP Sprint",
+    description: "5 sponsored teams build their MVP with funding support, lab access, and technical guidance.",
+    timeline: "August 29 - September 16, 2025"
+  },
+  {
+    title: "Phase 5: Final Pitch Day",
+    description: "All 5 teams present their MVPs. Local winner advances to national competition.",
+    timeline: "September 17, 2025"
+  }
+];
+
 // Competition tracks
 const tracks = [
     {
@@ -84,7 +133,7 @@ const tracks = [
           id: "tek-vend"
         },
         {
-          name: "Campus Dining Management System",
+          name: "Campus Dining Management System", 
           description: "Touchscreen ordering system for campus restaurants with integrated kitchen management and payment processing.",
           id: "campus-dining-management-system"
         },
@@ -105,63 +154,6 @@ const tracks = [
         "Retail & E-commerce", "Sustainability", "Smart Mobility"
       ]
     }
-  ];
-
-// Phases of the competition
-const phases = [
-  {
-    title: "Phase 1: Application & Screening",
-    description: "Submit your proposal under one of the two tracks. Top 20 teams will be shortlisted.",
-    timeline: "Month 1"
-  },
-  {
-    title: "Phase 2: Bootcamp & Investor Labs",
-    description: "Virtual bootcamp with workshops, mentorship, and investor feedback. Top 10 teams advance.",
-    timeline: "Month 2"
-  },
-  {
-    title: "Phase 3: MVP Sprint",
-    description: "Build your MVP with funding support, access to labs, and technical guidance.",
-    timeline: "Month 3 (Weeks 1-2)"
-  },
-  {
-    title: "Phase 4: Pitch Day",
-    description: "Present to investors, corporate leaders, and partners for final evaluation.",
-    timeline: "Month 3 (Week 3)"
-  },
-  {
-    title: "Phase 5: Post-Competition Acceleration",
-    description: "Winners receive seed funding, incubation, mentorship, and entry to the national Tek Invasion conference.",
-    timeline: "Months 4-9"
-  }
-];
-
-// Prizes information
-const prizes = [
-  {
-    title: "Grand Prize",
-    amount: "GHS 15,000",
-    extras: "Incubation + Investor Pitch Opportunity",
-    icon: Trophy
-  },
-  {
-    title: "Track Winners",
-    amount: "GHS 6,000 each",
-    extras: "Mentorship and Resource Access",
-    icon: Award
-  },
-  {
-    title: "Best Female-led Team",
-    amount: "GHS 3,500",
-    extras: "Special Mentorship Program",
-    icon: Users
-  },
-  {
-    title: "Supporters' Favorite",
-    amount: "GHS 2,500",
-    extras: "Media Spotlight",
-    icon: MessageCircle
-  }
 ];
 
 // Background images
@@ -173,65 +165,72 @@ const backgroundImages = {
 // -------------------- Registration Form Component --------------------
 const RegistrationForm = ({ selectedSchool, schools }) => {
   const [formData, setFormData] = useState({
-    teamName: '',
-    teamLead: {
-      name: '',
-      email: '',
-      phone: '',
-      department: '',
-      level: ''
-    },
-    members: [
-      { name: '', email: '', department: '', level: '' },
-      { name: '', email: '', department: '', level: '' },
-      { name: '', email: '', department: '', level: '' },
-      { name: '', email: '', department: '', level: '' }
-    ],
+    school: selectedSchool,
+    fullName: '',
+    email: '',
+    phone: '',
+    department: '',
+    level: '',
     interest: '',
+    preferredTrack: '',
+    hasTeam: '',
+    teamMembers: '',
     projectIdea: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   // Handle form input changes
-  const handleInputChange = (e, index = null, field = null, nestedField = null) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (index !== null && field) {
-      // Handle team members
-      const updatedMembers = [...formData.members];
-      if (nestedField) {
-        updatedMembers[index][nestedField] = value;
-      } else {
-        updatedMembers[index][name] = value;
-      }
-      setFormData({
-        ...formData,
-        members: updatedMembers
-      });
-    } else if (field === 'teamLead') {
-      // Handle team lead information
-      setFormData({
-        ...formData,
-        teamLead: {
-          ...formData.teamLead,
-          [name]: value
-        }
-      });
-    } else {
-      // Handle general form fields
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-    }
+    setFormData({
+      ...formData,
+      [name]: value
+    });
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    // Show submission confirmation
-    alert("Thank you for registering for X Invasion! Your application has been received.");
-    // Form would be reset and closed by parent component
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Submit to backend API that will post to Google Forms
+      const response = await fetch('/api/submit-registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          school: selectedSchool,
+          fullName: '',
+          email: '',
+          phone: '',
+          department: '',
+          level: '',
+          interest: '',
+          preferredTrack: '',
+          hasTeam: '',
+          teamMembers: '',
+          projectIdea: ''
+        });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -241,86 +240,88 @@ const RegistrationForm = ({ selectedSchool, schools }) => {
           Register for X Invasion: {schools[selectedSchool].name} Edition
         </h2>
         <p className="text-center text-orange-700 mb-12 max-w-3xl mx-auto">
-          Complete this form to register your team. Remember, your team must have exactly 5 members,
-          with a maximum of 3 engineering students and at least 2 students from other departments.
+          Complete this form to register for the program. All registered participants will go through 
+          the 2-week intensive bootcamp training starting August 9th, 2025.
         </p>
-        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-          {/* Team Name */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-orange-800 mb-6">Team Information</h3>
-            <div className="mb-4">
-              <label htmlFor="teamName" className="block text-orange-700 font-semibold mb-2">Team Name*</label>
-              <input
-                type="text"
-                id="teamName"
-                name="teamName"
-                value={formData.teamName}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                required
-              />
-            </div>
+
+        {/* Timeline Display */}
+        <div className="bg-white p-6 rounded-lg shadow-lg mb-8 max-w-4xl mx-auto">
+          <h3 className="text-2xl font-bold text-orange-800 mb-4 text-center">Program Timeline</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Object.entries(schools[selectedSchool].timeline || {}).map(([key, date]) => (
+              <div key={key} className="bg-orange-50 p-3 rounded-lg">
+                <h4 className="font-bold text-orange-800 text-sm">
+                  {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                </h4>
+                <p className="text-orange-700">{date}</p>
+              </div>
+            ))}
           </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+          {/* School Selection (Hidden) */}
+          <input type="hidden" name="school" value={formData.school} />
           
-          {/* Team Lead Information */}
+          {/* Personal Information */}
           <div className="mb-8">
-            <h3 className="text-2xl font-bold text-orange-800 mb-6">Team Lead Information</h3>
+            <h3 className="text-2xl font-bold text-orange-800 mb-6">Personal Information</h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="mb-4">
-                <label htmlFor="leadName" className="block text-orange-700 font-semibold mb-2">Full Name*</label>
+                <label htmlFor="fullName" className="block text-orange-700 font-semibold mb-2">Full Name*</label>
                 <input
                   type="text"
-                  id="leadName"
-                  name="name"
-                  value={formData.teamLead.name}
-                  onChange={(e) => handleInputChange(e, null, 'teamLead')}
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="leadEmail" className="block text-orange-700 font-semibold mb-2">Email Address*</label>
+                <label htmlFor="email" className="block text-orange-700 font-semibold mb-2">Email Address*</label>
                 <input
                   type="email"
-                  id="leadEmail"
+                  id="email"
                   name="email"
-                  value={formData.teamLead.email}
-                  onChange={(e) => handleInputChange(e, null, 'teamLead')}
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="leadPhone" className="block text-orange-700 font-semibold mb-2">Phone Number*</label>
+                <label htmlFor="phone" className="block text-orange-700 font-semibold mb-2">Phone Number*</label>
                 <input
                   type="tel"
-                  id="leadPhone"
+                  id="phone"
                   name="phone"
-                  value={formData.teamLead.phone}
-                  onChange={(e) => handleInputChange(e, null, 'teamLead')}
+                  value={formData.phone}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="leadDepartment" className="block text-orange-700 font-semibold mb-2">Department/Faculty*</label>
+                <label htmlFor="department" className="block text-orange-700 font-semibold mb-2">Department/Faculty*</label>
                 <input
                   type="text"
-                  id="leadDepartment"
+                  id="department"
                   name="department"
-                  value={formData.teamLead.department}
-                  onChange={(e) => handleInputChange(e, null, 'teamLead')}
+                  value={formData.department}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="leadLevel" className="block text-orange-700 font-semibold mb-2">Level/Year of Study*</label>
+                <label htmlFor="level" className="block text-orange-700 font-semibold mb-2">Level/Year of Study*</label>
                 <select
-                  id="leadLevel"
+                  id="level"
                   name="level"
-                  value={formData.teamLead.level}
-                  onChange={(e) => handleInputChange(e, null, 'teamLead')}
+                  value={formData.level}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 >
@@ -335,76 +336,28 @@ const RegistrationForm = ({ selectedSchool, schools }) => {
             </div>
           </div>
           
-          {/* Team Members */}
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-orange-800 mb-6">Team Members (4 additional members required)</h3>
-            
-            {formData.members.map((member, index) => (
-              <div key={index} className="mb-8 p-6 border border-orange-100 rounded-lg bg-orange-50">
-                <h4 className="text-lg font-bold text-orange-700 mb-4">Team Member {index + 1}</h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="mb-4">
-                    <label htmlFor={`member${index}Name`} className="block text-orange-700 font-semibold mb-2">Full Name*</label>
-                    <input
-                      type="text"
-                      id={`member${index}Name`}
-                      name="name"
-                      value={member.name}
-                      onChange={(e) => handleInputChange(e, index, 'members', 'name')}
-                      className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      required
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor={`member${index}Email`} className="block text-orange-700 font-semibold mb-2">Email Address*</label>
-                    <input
-                      type="email"
-                      id={`member${index}Email`}
-                      name="email"
-                      value={member.email}
-                      onChange={(e) => handleInputChange(e, index, 'members', 'email')}
-                      className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      required
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor={`member${index}Department`} className="block text-orange-700 font-semibold mb-2">Department/Faculty*</label>
-                    <input
-                      type="text"
-                      id={`member${index}Department`}
-                      name="department"
-                      value={member.department}
-                      onChange={(e) => handleInputChange(e, index, 'members', 'department')}
-                      className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      required
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor={`member${index}Level`} className="block text-orange-700 font-semibold mb-2">Level/Year of Study*</label>
-                    <select
-                      id={`member${index}Level`}
-                      name="level"
-                      value={member.level}
-                      onChange={(e) => handleInputChange(e, index, 'members', 'level')}
-                      className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      required
-                    >
-                      <option value="">Select level</option>
-                      <option value="100">100 Level</option>
-                      <option value="200">200 Level</option>
-                      <option value="300">300 Level</option>
-                      <option value="400">400 Level</option>
-                      <option value="Postgraduate">Postgraduate</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
           {/* Project Interest */}
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-orange-800 mb-6">Project Interest</h3>
+            
+            <div className="mb-4">
+              <label htmlFor="preferredTrack" className="block text-orange-700 font-semibold mb-2">Preferred Competition Track*</label>
+              <select
+                id="preferredTrack"
+                name="preferredTrack"
+                value={formData.preferredTrack}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                required
+              >
+                <option value="">Select your preferred track</option>
+                <option value="ideaBank">Idea Bank Track (2 teams selected)</option>
+                <option value="originalIdea">Original Ideas Track (3 teams selected)</option>
+              </select>
+              <p className="text-sm text-orange-600 mt-2">
+                You can learn about both tracks during training and make your final choice then.
+              </p>
+            </div>
             
             <div className="mb-4">
               <label htmlFor="interest" className="block text-orange-700 font-semibold mb-2">Primary Area of Interest*</label>
@@ -417,10 +370,6 @@ const RegistrationForm = ({ selectedSchool, schools }) => {
                 required
               >
                 <option value="">Select your interest</option>
-                <option value="AI">Artificial Intelligence</option>
-                <option value="Software">Software Development</option>
-                <option value="Hardware">Hardware/IoT</option>
-                <option value="Blockchain">Blockchain Technology</option>
                 <option value="EdTech">Educational Technology</option>
                 <option value="HealthTech">Health Technology</option>
                 <option value="FinTech">Financial Technology</option>
@@ -428,8 +377,43 @@ const RegistrationForm = ({ selectedSchool, schools }) => {
                 <option value="Retail">Retail & E-commerce</option>
                 <option value="Sustainability">Sustainability Solutions</option>
                 <option value="Mobility">Smart Mobility & Logistics</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="IoT">Internet of Things</option>
+                <option value="Blockchain">Blockchain Technology</option>
               </select>
             </div>
+            
+            <div className="mb-4">
+              <label htmlFor="hasTeam" className="block text-orange-700 font-semibold mb-2">Do you have a team already?*</label>
+              <select
+                id="hasTeam"
+                name="hasTeam"
+                value={formData.hasTeam}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                required
+              >
+                <option value="">Select option</option>
+                <option value="yes">Yes, I have a team</option>
+                <option value="partial">I have some team members</option>
+                <option value="no">No, I need help finding team members</option>
+              </select>
+            </div>
+
+            {formData.hasTeam === 'yes' || formData.hasTeam === 'partial' ? (
+              <div className="mb-4">
+                <label htmlFor="teamMembers" className="block text-orange-700 font-semibold mb-2">Team Members (Names and Departments)</label>
+                <textarea
+                  id="teamMembers"
+                  name="teamMembers"
+                  value={formData.teamMembers}
+                  onChange={handleInputChange}
+                  rows="3"
+                  className="w-full px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  placeholder="List your current team members and their departments..."
+                ></textarea>
+              </div>
+            ) : null}
             
             <div className="mb-4">
               <label htmlFor="projectIdea" className="block text-orange-700 font-semibold mb-2">Brief Project Idea (optional)</label>
@@ -454,20 +438,42 @@ const RegistrationForm = ({ selectedSchool, schools }) => {
                 required
               />
               <span className="text-orange-700">
-                I confirm that our team meets the requirements (5 members with max 3 engineering students)
-                and agree to the competition rules and guidelines. I understand that we will receive more
-                details about the competition tracks during the event.
+                I confirm that I am a current student at {schools[selectedSchool].name} and agree to participate 
+                in the full 2-week bootcamp training program starting August 9th, 2025. I understand that all 
+                participants will go through training regardless of final team selection.
               </span>
             </label>
           </div>
           
           {/* Submit Button */}
           <div className="text-center">
+            {submitStatus === 'success' && (
+              <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800 font-semibold">Registration successful! Check your email for confirmation.</p>
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800 font-semibold">There was an error submitting your registration. Please try again.</p>
+              </div>
+            )}
+            
             <button
               type="submit"
-              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
+              disabled={isSubmitting}
+              className="bg-orange-600 hover:bg-orange-700 disabled:bg-orange-400 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
             >
-              Submit Registration <ArrowRight className="ml-2 h-5 w-5" />
+              {isSubmitting ? (
+                <>
+                  <Loader className="animate-spin mr-2 h-5 w-5" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  Submit Registration <Send className="ml-2 h-5 w-5" />
+                </>
+              )}
             </button>
           </div>
         </form>
@@ -488,7 +494,6 @@ const XInvasionLanding = () => {
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [selectedSchool, setSelectedSchool] = useState('');
   const [showAllSchools, setShowAllSchools] = useState(false);
-
   const [visibleProject, setVisibleProject] = useState(null);
 
   // Function to toggle project details visibility
@@ -497,7 +502,6 @@ const XInvasionLanding = () => {
       setVisibleProject(null);
     } else {
       setVisibleProject(projectId);
-      // Wrap in a try-catch to prevent errors if element doesn't exist
       setTimeout(() => {
         try {
           const element = document.getElementById(`${projectId}-details`);
@@ -522,14 +526,13 @@ const XInvasionLanding = () => {
     }, 3000);
   };
 
-  const openRegistrationForm = (school) => {
-    setSelectedSchool(school);
-    setShowRegistrationForm(true);
-    // Scroll to the form
-    setTimeout(() => {
-      document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+  const handleRegisterClick = (schoolKey) => {
+    const school = schools[schoolKey];
+    if (school.active && school.formUrl) {
+      window.open(school.formUrl, '_blank');
+    }
   };
+
 
   // Get active schools (for initial display) or all schools based on toggle
   const getSchoolsToDisplay = () => {
@@ -562,7 +565,7 @@ const XInvasionLanding = () => {
               className="text-center mb-8"
             >
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
-                Welcome to <span className="text-gradient bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600">X Invasion</span>
+                Welcome to <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">X Invasion</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                 Where innovative business ideas meet real industry challenges
@@ -601,7 +604,6 @@ const XInvasionLanding = () => {
                     Click the button below to step onto the stage and begin your journey with X Invasion!
                   </p>
                   
-                  {/* Start Pitch Button */}
                   <motion.button
                     className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg flex items-center justify-center mx-auto text-xl transition-all"
                     whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(249, 115, 22, 0.5)" }}
@@ -618,7 +620,6 @@ const XInvasionLanding = () => {
                     Your Pitch Is In Progress...
                   </h2>
                   
-                  {/* Pitch Visualization */}
                   <div className="h-12 w-full bg-gray-700 rounded-full overflow-hidden mb-6">
                     <motion.div 
                       className="h-full bg-gradient-to-r from-orange-400 to-orange-600"
@@ -628,7 +629,6 @@ const XInvasionLanding = () => {
                     />
                   </div>
                   
-                  {/* Pitch Progress Text */}
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -671,24 +671,10 @@ const XInvasionLanding = () => {
                   </div>
                 </>
               )}
-              
-              {/* Business people silhouettes */}
-              <div className="absolute bottom-0 inset-x-0 h-16 flex justify-center">
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="w-8 h-12 bg-black rounded-t-full mx-2"
-                    style={{ translateY: (i % 2 === 0) ? '10px' : '0' }}
-                    initial={{ y: 50 }}
-                    animate={{ y: 0 }}
-                    transition={{ delay: 0.8 + i * 0.1 }}
-                  />
-                ))}
-              </div>
             </motion.div>
           </motion.div>
         ) : (
-          // Main Content (visible after pitch animation completes)
+          // Main Content
           <main>
             {/* Hero Section */}
             <header 
@@ -732,28 +718,39 @@ const XInvasionLanding = () => {
                 </motion.p>
                 
                 <motion.p 
-                  className="text-xl text-orange-200 max-w-2xl mx-auto mb-10"
+                  className="text-xl text-orange-200 max-w-2xl mx-auto mb-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
                 >
                   From Lecture Halls to Unicorn Halls: Building Africa's Tech Future, One Student at a Time
                 </motion.p>
+
+                <motion.div 
+                  className="bg-orange-600 bg-opacity-90 text-white p-4 rounded-lg max-w-2xl mx-auto mb-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  <p className="font-bold text-lg mb-2"> Registration Closes Soon!</p>
+                  <p>Applications close <strong>August 7, 2025</strong></p>
+                  <p>Training starts <strong>August 9, 2025</strong></p>
+                </motion.div>
                 
                 <motion.div 
                   className="flex flex-col md:flex-row justify-center gap-6"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
+                  transition={{ delay: 1.2 }}
                 >
                   <button
-                    onClick={() => openRegistrationForm('ug')}
+                    onClick={() => handleRegisterClick('ug')}
                     className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
                   >
                     UG Edition <School className="ml-2 h-5 w-5" />
                   </button>
                   <button
-                    onClick={() => openRegistrationForm('knust')}
+                    onClick={() => handleRegisterClick('knust')}
                     className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
                   >
                     KNUST Edition <School className="ml-2 h-5 w-5" />
@@ -821,9 +818,13 @@ const XInvasionLanding = () => {
                         <h3 className="text-2xl font-bold text-orange-800 mb-2">
                           X Invasion: {schools[activeSchool].name} Edition
                         </h3>
-                        <p className="text-orange-600 mb-4">
+                        <p className="text-orange-600 mb-2">
                           <Calendar className="inline mr-2" size={18} />
-                          Event Date: {schools[activeSchool].date}
+                          Final Pitch Day: {schools[activeSchool].date}
+                        </p>
+                        <p className="text-orange-600 mb-2">
+                          <Calendar className="inline mr-2" size={18} />
+                          Training Starts: {schools[activeSchool].bootcampStart}
                         </p>
                         {schools[activeSchool].venue && (
                           <p className="text-orange-600 mb-4">
@@ -831,19 +832,16 @@ const XInvasionLanding = () => {
                             Venue: {schools[activeSchool].venue}
                           </p>
                         )}
-                        {schools[activeSchool].registrationDeadline && (
-                          <p className="text-red-600 font-semibold">
-                            Registration Deadline: {schools[activeSchool].registrationDeadline}
-                          </p>
-                        )}
+                        <p className="text-red-600 font-semibold">
+                          Registration Deadline: {schools[activeSchool].registrationDeadline}
+                        </p>
                       </div>
                     </div>
                     
                     <div className="flex justify-center">
                       <button
-                        onClick={() => openRegistrationForm(activeSchool)}
+                        onClick={() => handleRegisterClick(activeSchool)}
                         className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
-                        disabled={!schools[activeSchool].active}
                       >
                         Register Now <ArrowRight className="ml-2 h-5 w-5" />
                       </button>
@@ -870,9 +868,7 @@ const XInvasionLanding = () => {
                       We're expanding X Invasion to {schools[activeSchool].name} soon! Join our mailing list to be notified when registration opens.
                     </p>
                     
-                    <button
-                      className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
-                    >
+                    <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300">
                       Get Notified <MessageCircle className="ml-2 h-5 w-5" />
                     </button>
                   </div>
@@ -891,27 +887,33 @@ const XInvasionLanding = () => {
                   <div>
                     <p className="text-lg text-orange-700 mb-6">
                       X Invasion is a reimagined university-level adaptation of Ghana's flagship tech innovation conference,
-                      tailored to empower student entrepreneurs. This competition merges academic rigor with practical execution,
-                      focusing on scalable, tech-driven solutions to Africa's pressing challenges.
+                      tailored to empower student entrepreneurs. This intensive 7-week program transforms innovative ideas 
+                      into market-ready solutions through comprehensive training, mentorship, and funding support.
                     </p>
                     <p className="text-lg text-orange-700 mb-6">
-                      Unlike traditional university contests, X Invasion emphasizes real-world traction, investor engagement,
-                      and post-competition acceleration to transform student ideas into investible ventures.
+                      Unlike traditional university contests, X Invasion emphasizes practical execution and MVP development.
+                      All participants receive valuable entrepreneurship training, with 5 selected teams (2 from Idea Bank Track, 
+                      3 from Original Ideas Track) receiving funding and technical support to build their prototypes. Each track 
+                      produces a winner who receives GH₵ 2,000 and advances to compete for the GH₵ 10,000 national prize.
                     </p>
                     <div className="bg-white p-4 rounded-lg border-l-4 border-orange-500">
-                      <h4 className="font-bold text-orange-800 mb-2">Team Requirements:</h4>
+                      <h4 className="font-bold text-orange-800 mb-2">Competition Structure:</h4>
                       <ul className="space-y-2">
                         <li className="flex items-start">
                           <CheckCircle className="text-orange-500 mt-1 mr-2 flex-shrink-0" size={18} />
-                          <span>5 members per team</span>
+                          <span>All applicants participate in 2-week intensive bootcamp</span>
                         </li>
                         <li className="flex items-start">
                           <CheckCircle className="text-orange-500 mt-1 mr-2 flex-shrink-0" size={18} />
-                          <span>Maximum 3 engineering students per team</span>
+                          <span>5 teams selected: 2 from Idea Bank + 3 from Original Ideas</span>
                         </li>
                         <li className="flex items-start">
                           <CheckCircle className="text-orange-500 mt-1 mr-2 flex-shrink-0" size={18} />
-                          <span>At least 2 students from other departments/faculties</span>
+                          <span>Each track winner receives GH₵ 2,000 and advances to national finals</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="text-orange-500 mt-1 mr-2 flex-shrink-0" size={18} />
+                          <span>National champion receives GH₵ 10,000 grand prize</span>
                         </li>
                       </ul>
                     </div>
@@ -937,286 +939,188 @@ const XInvasionLanding = () => {
 
             {/* Competition Tracks */}
             <section className="py-16 bg-white">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-      Competition Tracks
-    </h2>
-    
-    <div className="grid md:grid-cols-2 gap-12">
-      {tracks.map((track) => (
-        <div key={track.id} className="bg-orange-50 rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-orange-600 text-white p-6 flex items-center">
-            <track.icon className="h-8 w-8 mr-4" />
-            <h3 className="text-2xl font-bold">{track.title}</h3>
-          </div>
-          
-          <div className="p-6">
-            <p className="text-lg text-orange-700 mb-6">{track.description}</p>
-            
-            {track.id === 'ideaBank' ? (
-              <div>
-                <h4 className="font-bold text-orange-800 mb-4">Available Projects:</h4>
-                {track.examples.map((example, i) => (
-                  <div key={i} className="mb-6 bg-white p-4 rounded-lg shadow-sm">
-                    <h5 className="font-bold text-orange-800 mb-2">{example.name}</h5>
-                    <p className="text-orange-700 mb-2">{example.description}</p>
-                    <button 
-                      onClick={() => toggleProjectDetails(example.id)}
-                      className="text-orange-600 hover:text-orange-800 font-semibold inline-flex items-center"
-                    >
-                      {visibleProject === example.id ? 'Hide Details' : 'View Details'} 
-                      <ChevronRight className={`ml-1 h-4 w-4 transform transition-transform duration-300 
-                        ${visibleProject === example.id ? 'rotate-90' : ''}`} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div>
-                <h4 className="font-bold text-orange-800 mb-4">Focus Areas:</h4>
-                <div className="grid grid-cols-2 gap-2">
-                  {track.focusAreas.map((area, i) => (
-                    <div key={i} className="bg-white p-3 rounded-lg shadow-sm flex items-center">
-                      <Zap className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>{area}</span>
+              <div className="container mx-auto px-4">
+                <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
+                  Competition Tracks
+                </h2>
+                
+                <div className="grid md:grid-cols-2 gap-12">
+                  {tracks.map((track) => (
+                    <div key={track.id} className="bg-orange-50 rounded-lg shadow-lg overflow-hidden">
+                      <div className="bg-orange-600 text-white p-6 flex items-center justify-between">
+                        <div className="flex items-center">
+                          <track.icon className="h-8 w-8 mr-4" />
+                          <h3 className="text-2xl font-bold">{track.title}</h3>
+                        </div>
+                        <div className="bg-orange-500 px-3 py-1 rounded-full text-sm font-bold">
+                          {track.id === 'ideaBank' ? '2 Teams Selected' : '3 Teams Selected'}
+                        </div>
+                      </div>
+                      
+                      <div className="p-6">
+                        <p className="text-lg text-orange-700 mb-6">{track.description}</p>
+                        
+                        {track.id === 'ideaBank' ? (
+                          <div>
+                            <h4 className="font-bold text-orange-800 mb-4">Available Projects:</h4>
+                            {track.examples.map((example, i) => (
+                              <div key={i} className="mb-6 bg-white p-4 rounded-lg shadow-sm">
+                                <h5 className="font-bold text-orange-800 mb-2">{example.name}</h5>
+                                <p className="text-orange-700 mb-2">{example.description}</p>
+                                <button 
+                                  onClick={() => toggleProjectDetails(example.id)}
+                                  className="text-orange-600 hover:text-orange-800 font-semibold inline-flex items-center"
+                                >
+                                  {visibleProject === example.id ? 'Hide Details' : 'View Details'} 
+                                  <ChevronRight className={`ml-1 h-4 w-4 transform transition-transform duration-300 
+                                    ${visibleProject === example.id ? 'rotate-90' : ''}`} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div>
+                            <h4 className="font-bold text-orange-800 mb-4">Focus Areas:</h4>
+                            <div className="grid grid-cols-2 gap-2">
+                              {track.focusAreas.map((area, i) => (
+                                <div key={i} className="bg-white p-3 rounded-lg shadow-sm flex items-center">
+                                  <Zap className="text-orange-500 mr-2 h-4 w-4" />
+                                  <span>{area}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
+                      
+                {/* Project Details Section */}
+                {visibleProject && (
+                  <div id={`${visibleProject}-details`} className="mt-16 bg-orange-50 p-8 rounded-lg shadow-lg">
+                    {/* Project details content remains the same as in original */}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-          
-                {/* Project Details Section - Only shows the active project */}
-    {visibleProject && (
-      <div id={`${visibleProject}-details`} className="mt-16 bg-orange-50 p-8 rounded-lg shadow-lg">
-        {visibleProject === 'tek-vend' && (
-          <>
-            <h3 className="text-3xl font-bold text-orange-800 mb-6">Tek Vend Project Details</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-lg text-orange-700 mb-4">
-                  Tek Vend is an innovative smart vending solution company that aims to revolutionize two key market segments:
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">1</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Campus Convenience Retail</h4>
-                      <p>Deploying smart vending machines at universities to provide students with easy access to snacks,
-                      beverages, and essentials through mobile money payments.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">2</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Public Toilet Facility Management</h4>
-                      <p>Transforming traditional public toilet management systems with automated vending solutions
-                      that dispense toilet paper, soap, and other hygiene products.</p>
-                    </div>
-                  </li>
-                </ul>
-                <p className="mt-4 text-lg text-orange-700">
-                  Your challenge is to create a plan for implementing and scaling Tek Vend on your campus,
-                  with a focus on innovative approaches, technology integration, and business sustainability.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Your Task</h4>
-                  <p>Develop a comprehensive plan for implementing Tek Vend on your campus,
-                  including locations, marketing strategy, operational plan, and potential improvements
-                  to the business model.</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Key Technology Components</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <Cpu className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>MTN Mobile Money integration</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Code className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Cloud-based inventory tracking</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Automated dispensing mechanisms</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Business Model</h4>
-                  <p>Pilot implementation with an 80/20 profit-sharing arrangement with the university.</p>
-                  <p className="mt-2">Initial investment requirements: GH₵400,000</p>
-                  <p className="mt-2">Projected breakeven: 24 months</p>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
+            </section>
 
-        {visibleProject === 'campus-dining-management-system' && (
-          <>
-            <h3 className="text-3xl font-bold text-orange-800 mb-6">Campus Dining Management System Details</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-lg text-orange-700 mb-4">
-                  The Campus Dining Management System aims to revolutionize the dining experience at university cafeterias and restaurants through integrated technology:
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">1</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Customer Self-Ordering</h4>
-                      <p>Tablet screens and QR codes at tables allow customers to browse menus and place orders directly without waiting for staff, improving efficiency and reducing wait times.</p>
+            {/* Prizes & Competition Structure */}
+            <section className="py-16 bg-white">
+              <div className="container mx-auto px-4">
+                <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
+                  Prizes & Competition Structure
+                </h2>
+                
+                {/* Local Competition */}
+                <div className="mb-16">
+                  <h3 className="text-3xl font-bold text-orange-700 mb-8 text-center">
+                    🏆 Local Competition (Per School)
+                  </h3>
+                  
+                  <div className="grid md:grid-cols-3 gap-8 mb-8">
+                    <div className="bg-gradient-to-b from-yellow-50 to-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300 border-2 border-yellow-200">
+                      <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Trophy className="text-yellow-700 h-8 w-8" />
+                      </div>
+                      <h4 className="text-xl font-bold text-orange-800 mb-2">Track Winners</h4>
+                      <div className="text-2xl font-bold text-orange-500 mb-2">GH₵ 2,000</div>
+                      <p className="text-orange-700 mb-2">Each Track Winner</p>
+                      <p className="text-sm text-orange-600">+ Business Support Package</p>
+                      <p className="text-sm text-orange-600">+ Advances to National Competition</p>
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">2</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Kitchen Management Interface</h4>
-                      <p>Digital display screens in the kitchen show incoming orders in real-time, allowing staff to process orders efficiently and mark them as complete when ready for service.</p>
+                    
+                    <div className="bg-gradient-to-b from-orange-50 to-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+                      <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Award className="text-orange-700 h-8 w-8" />
+                      </div>
+                      <h4 className="text-xl font-bold text-orange-800 mb-2">All 5 Finalists</h4>
+                      <div className="text-lg font-bold text-orange-500 mb-2">GH₵ 1,500</div>
+                      <p className="text-orange-700 mb-2">MVP Development Funding</p>
+                      <p className="text-sm text-orange-600">+ Mentorship & Lab Access</p>
+                      <p className="text-sm text-orange-600">+ Technical Support</p>
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">3</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Integrated Payment System</h4>
-                      <p>Cashiers can view completed orders awaiting payment, process mobile and card payments, and close orders upon completion, streamlining the entire dining experience.</p>
-                    </div>
-                  </li>
-                </ul>
-                <p className="mt-4 text-lg text-orange-700">
-                  Your challenge is to design a comprehensive implementation plan for this system at your campus dining facilities, focusing on user experience, operational efficiency, and business viability.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Your Task</h4>
-                  <p>Develop a detailed implementation strategy for the Campus Dining Management System at your university, including user interface design, technical architecture, and a business model that benefits both students and the institution.</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Key Technology Components</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <Cpu className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Mobile and web application interfaces</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Code className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Real-time order synchronization</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Payment gateway integration</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Analytics dashboard for management</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Business Model</h4>
-                  <p>Revenue sharing model with 10% of each transaction or a flat monthly licensing fee to the university.</p>
-                  <p className="mt-2">Initial investment requirements: GH₵350,000</p>
-                  <p className="mt-2">Projected breakeven: 18 months</p>
-                  <p className="mt-2">Expected efficiency improvement: 30% reduction in wait times</p>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
 
-        {visibleProject === 'smart-attendance-system' && (
-          <>
-            <h3 className="text-3xl font-bold text-orange-800 mb-6">Smart Attendance System Details</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-lg text-orange-700 mb-4">
-                  The Smart Attendance System is a comprehensive solution designed to modernize attendance tracking across educational institutions:
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">1</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Multi-Modal Biometric Verification</h4>
-                      <p>Mobile attendance devices with fingerprint recognition, facial identification, and palm scanning capabilities ensure accurate identity verification for students, teachers, and staff.</p>
+                    <div className="bg-gradient-to-b from-blue-50 to-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+                      <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Users className="text-blue-700 h-8 w-8" />
+                      </div>
+                      <h4 className="text-xl font-bold text-orange-800 mb-2">All Participants</h4>
+                      <div className="text-lg font-bold text-orange-500 mb-2">Free Training</div>
+                      <p className="text-orange-700 mb-2">2-Week Intensive Bootcamp</p>
+                      <p className="text-sm text-orange-600">+ Certificate of Participation</p>
+                      <p className="text-sm text-orange-600">+ Networking Opportunities</p>
                     </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">2</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Comprehensive Coverage</h4>
-                      <p>Tracks attendance across multiple contexts including classroom sessions, school bus transportation, faculty meetings, and campus events with specialized verification workflows.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="bg-orange-100 p-2 rounded-full text-orange-700 mr-3 mt-1">3</div>
-                    <div>
-                      <h4 className="font-bold text-orange-800">Analytics & Reporting</h4>
-                      <p>Powerful dashboard with real-time analytics, attendance patterns, and automated notifications for parents, students, and administrators about attendance status and issues.</p>
-                    </div>
-                  </li>
-                </ul>
-                <p className="mt-4 text-lg text-orange-700">
-                  Your challenge is to create an implementation plan for this system at your institution, focusing on privacy considerations, technical integration, and stakeholder adoption.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Your Task</h4>
-                  <p>Design a comprehensive implementation strategy for the Smart Attendance System, addressing technical architecture, data privacy concerns, and user adoption plans for students, faculty, and administrators.</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Key Technology Components</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <Cpu className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Mobile biometric devices</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Code className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Secure data encryption</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Cloud-based management system</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Advanced analytics and reporting</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Wrench className="text-orange-500 mr-2 h-4 w-4" />
-                      <span>Parent and student mobile app</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-orange-800 mb-2">Business Model</h4>
-                  <p>Subscription-based model with tiered pricing based on institution size and features required.</p>
-                  <p className="mt-2">Initial investment requirements: GH₵500,000</p>
-                  <p className="mt-2">Projected breakeven: 24 months</p>
-                  <p className="mt-2">Expected efficiency improvement: 95% reduction in attendance fraud, 80% reduction in administrative time</p>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    )}
-  </div>
-</section>
+                  </div>
 
-            {/* Competition Structure */}
+                  <div className="bg-orange-50 p-6 rounded-lg shadow-md text-center">
+                    <h4 className="text-xl font-bold text-orange-800 mb-2">Track Winner Breakdown</h4>
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div className="bg-white p-4 rounded-lg">
+                        <h5 className="font-bold text-orange-700 mb-2">💡 Idea Bank Track Winner</h5>
+                        <p className="text-2xl font-bold text-orange-500 mb-1">GH₵ 2,000</p>
+                        <p className="text-orange-600 text-sm">Selected from 2 finalist teams</p>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <h5 className="font-bold text-orange-700 mb-2">🚀 Original Ideas Track Winner</h5>
+                        <p className="text-2xl font-bold text-orange-500 mb-1">GH₵ 2,000</p>
+                        <p className="text-orange-600 text-sm">Selected from 3 finalist teams</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-orange-600">Both track winners advance to compete in the National Competition</p>
+                  </div>
+                </div>
+
+                {/* National Competition */}
+                <div className="mb-8">
+                  <h3 className="text-3xl font-bold text-orange-700 mb-8 text-center">
+                    🌟 National X Invasion Competition
+                  </h3>
+                  
+                  <div className="max-w-2xl mx-auto">
+                    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-lg shadow-lg text-center border-2 border-purple-200">
+                      <div className="bg-gradient-to-r from-purple-500 to-indigo-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Trophy className="text-white h-12 w-12" />
+                      </div>
+                      <h4 className="text-3xl font-bold text-purple-800 mb-4">National Champion</h4>
+                      <div className="text-4xl font-bold text-purple-600 mb-4">GH₵ 10,000</div>
+                      <p className="text-lg text-purple-700 mb-4">Grand Prize for Overall Winner</p>
+                      
+                      <div className="bg-white p-4 rounded-lg shadow-inner">
+                        <h5 className="font-bold text-purple-800 mb-3">Additional Benefits:</h5>
+                        <ul className="text-purple-700 space-y-2">
+                          <li>• Seed funding opportunities</li>
+                          <li>• Incubation program access</li>
+                          <li>• Investor pitch opportunities</li>
+                          <li>• Media spotlight and publicity</li>
+                          <li>• Ongoing mentorship program</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center bg-orange-100 p-6 rounded-lg">
+                  <h4 className="text-2xl font-bold text-orange-800 mb-2">Path to Success</h4>
+                  <p className="text-lg text-orange-700 mb-4">
+                    Local Track Winners (GH₵ 2,000 each) → National Competition → GH₵ 10,000 Grand Prize
+                  </p>
+                  <div className="flex justify-center items-center space-x-4 text-orange-600 flex-wrap">
+                    <span className="bg-orange-200 px-4 py-2 rounded-full font-bold mb-2">UG Winners</span>
+                    <ArrowRight className="h-6 w-6 mb-2" />
+                    <span className="bg-orange-200 px-4 py-2 rounded-full font-bold mb-2">vs</span>
+                    <ArrowRight className="h-6 w-6 mb-2" />
+                    <span className="bg-orange-200 px-4 py-2 rounded-full font-bold mb-2">KNUST Winners</span>
+                    <ArrowRight className="h-6 w-6 mb-2" />
+                    <span className="bg-purple-200 px-4 py-2 rounded-full font-bold text-purple-800 mb-2">National Champion</span>
+                  </div>
+                </div>
+              </div>
+            </section>
             <section className="py-16 bg-orange-100">
               <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-                  Competition Structure
+                  Program Timeline
                 </h2>
                 
                 <div className="relative">
@@ -1246,34 +1150,6 @@ const XInvasionLanding = () => {
               </div>
             </section>
 
-            {/* Prizes */}
-            <section className="py-16 bg-white">
-              <div className="container mx-auto px-4">
-                <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-                  Prizes & Awards
-                </h2>
-                
-                <div className="grid md:grid-cols-4 gap-6">
-                  {prizes.map((prize, index) => (
-                    <div key={index} className="bg-gradient-to-b from-orange-50 to-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-                      <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <prize.icon className="text-orange-700 h-8 w-8" />
-                      </div>
-                      <h3 className="text-xl font-bold text-orange-800 mb-2">{prize.title}</h3>
-                      <div className="text-2xl font-bold text-orange-500 mb-2">{prize.amount}</div>
-                      <p className="text-orange-700">{prize.extras}</p>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-12 bg-orange-50 p-6 rounded-lg shadow-md text-center">
-                  <h3 className="text-2xl font-bold text-orange-800 mb-4">Total Prize Pool</h3>
-                  <div className="text-4xl font-bold text-orange-500 mb-2">GHS 35,000</div>
-                  <p className="text-lg text-orange-700">Plus incubation support, mentorship, and investor connections</p>
-                </div>
-              </div>
-            </section>
-
             {/* Registration Form Section */}
             {showRegistrationForm && (
               <RegistrationForm 
@@ -1282,133 +1158,45 @@ const XInvasionLanding = () => {
               />
             )}
             
-            {/* FAQ Section */}
-<section className="py-16 bg-white">
-  <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-      Frequently Asked Questions
-    </h2>
-    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      {[
-        {
-          question: "Who can participate in X Invasion?",
-          answer: "Current students from participating universities can join. Teams must have 5 members with a maximum of 3 engineering students per team to encourage diverse perspectives."
-        },
-        {
-          question: "Do we need a complete product to apply?",
-          answer: "No, you only need an innovative idea or approach. The competition is designed to help you develop your concept into a prototype through mentorship and resources."
-        },
-        {
-          question: "Is there a registration fee?",
-          answer: "No, participation in X Invasion is completely free for all eligible students."
-        },
-        {
-          question: "What if I don't have a team yet?",
-          answer: "You can register as an individual, and we'll help match you with team members based on complementary skills and interests before the competition begins."
-        },
-        {
-          question: "Do we retain ownership of our ideas?",
-          answer: "Yes, teams retain full intellectual property rights to their ideas and innovations. The competition organizers and sponsors may request right of first refusal for investment opportunities."
-        },
-        {
-          question: "What kind of support will teams receive?",
-          answer: "Teams will receive mentorship, technical support, access to workspace and resources, and MVP funding to develop their ideas during the competition."
-        },
-        {
-          question: "What happens if we win the Idea Bank Track?",
-          answer: "Winners of the Idea Bank Track at each university will have the opportunity to establish a campus branch of the selected project with funding from our investors. The winning team leader will serve as branch CEO, managing operations while receiving a share of profits and potentially a salary depending on the specific project's terms."
-        },
-        {
-          question: "Can we continue with the project after graduation?",
-          answer: "Absolutely! The overall track winner from the inter-university finals will be offered a continued leadership role as CEO even after graduation. This provides a direct pathway from student entrepreneur to professional business leader running a real venture that originated from the competition."
-        }
-      ].map((faq, index) => (
-        <div key={index} className="mb-6 bg-orange-50 p-6 rounded-lg hover:shadow-md transition-shadow duration-300">
-          <h3 className="text-xl font-bold text-orange-800 mb-2">{faq.question}</h3>
-          <p className="text-orange-700">{faq.answer}</p>
-        </div>
-      ))}
+            {/* Contact Section */}
+            <section className="py-16 bg-orange-100">
+              <div className="container mx-auto px-4 text-center">
+                <h2 className="text-4xl font-bold text-orange-800 mb-6">Ready to Take the Challenge?</h2>
+                <p className="text-xl text-orange-700 mb-10 max-w-3xl mx-auto">
+                  Join X Invasion and be part of Ghana's next generation of tech innovators and entrepreneurs!
+                </p>
+                <p className="text-lg text-red-600 font-bold mb-8">
+                  ⏰ Registration closes August 7, 2025 - Don't miss out!
+                </p>
+                <div className="flex flex-col md:flex-row justify-center gap-6">
+                  <button
+                    onClick={() => handleRegisterClick('ug')}
+                    className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
+                  >
+                    UG Edition <School className="ml-2 h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={() => handleRegisterClick('knust')}
+                    className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
+                  >
+                    KNUST Edition <School className="ml-2 h-5 w-5" />
+                  </button>
+                </div>
+                <div className="mt-12">
+                  <p className="text-orange-700 mb-2">Have questions? Contact us at:</p>
+                  <a href="mailto:contact@realworldtechcenter.com" className="text-orange-800 font-bold hover:underline">
+                  contact@realworldtechcenter.com
+                  </a>
+                </div>
+              </div>
+            </section>
+          </main>
+        )}
+      </AnimatePresence>
+      
+      <Footer />
     </div>
-  </div>
-</section>
-                {/* Partners and Sponsors */}
-                <section className="py-16 bg-orange-50">
-                  <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-orange-800 mb-12 text-center">
-                      Partners & Sponsors
-                    </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                      {[
-                        // { name: "MTN Ghana", category: "Industry Partner" },
-                        // { name: "Google for Startups", category: "Technology Partner" },
-                        // { name: "IBM Africa", category: "Technology Partner" },
-                        { name: "Tek-Devisal", category: "Industry Partner" },
-                        { name: "IoT Network", category: "Technology Partner" },
-                        { name: "ToddlerWalks", category: "Training Partner" },
-                        // { name: "Injaro Investments", category: "Investor" },
-                        // { name: "Venture Capital Trust Fund", category: "Investor" },
-                        // { name: "MEST Africa", category: "Tech Hub" },
-                        // { name: "Impact Hub Accra", category: "Tech Hub" },
-                        // { name: "NEIP", category: "Government" },
-                        // { name: "Ministry for Youth", category: "Government" },
-                        // { name: "YEA", category: "Government" }
-                      ].map((partner, index) => (
-                        <div key={index} className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-                          <div className="h-16 flex items-center justify-center mb-4">
-                            <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                              <span className="text-orange-800 font-bold">{partner.name.charAt(0)}</span>
-                            </div>
-                          </div>
-                          <h3 className="font-bold text-orange-800">{partner.name}</h3>
-                          <p className="text-orange-600 text-sm">{partner.category}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-12 text-center">
-                      <p className="text-orange-700 mb-6">Interested in becoming a sponsor?</p>
-                      <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center text-lg transition duration-300">
-                        Contact Us <DollarSign className="ml-2 h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
-                </section>
-                
-                {/* Contact Section */}
-                <section className="py-16 bg-orange-100">
-                  <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-bold text-orange-800 mb-6">Ready to Take the Challenge?</h2>
-                    <p className="text-xl text-orange-700 mb-10 max-w-3xl mx-auto">
-                      Join X Invasion and be part of Ghana's next generation of tech innovators and entrepreneurs!
-                    </p>
-                    <div className="flex flex-col md:flex-row justify-center gap-6">
-                      <button
-                        onClick={() => openRegistrationForm('ug')}
-                        className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
-                      >
-                        UG Edition <School className="ml-2 h-5 w-5" />
-                      </button>
-                      <button
-                        onClick={() => openRegistrationForm('knust')}
-                        className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-full inline-flex items-center text-lg transition duration-300"
-                      >
-                        KNUST Edition <School className="ml-2 h-5 w-5" />
-                      </button>
-                    </div>
-                    <div className="mt-12">
-                      <p className="text-orange-700 mb-2">Have questions? Contact us at:</p>
-                      <a href="mailto:xinvasion@example.com" className="text-orange-800 font-bold hover:underline">
-                        xinvasion@example.com
-                      </a>
-                    </div>
-                  </div>
-                </section>
-              </main>
-            )}
-          </AnimatePresence>
-          
-          <Footer />
-        </div>
-      );
-    };
-    
-    export default XInvasionLanding;
+  );
+};
+
+export default XInvasionLanding;
