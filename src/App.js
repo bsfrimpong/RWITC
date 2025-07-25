@@ -8,6 +8,7 @@ import AboutPage from './features/AboutUs/AboutUsPage';
 import XFoundryLanding from './components/xfoundryLandingPage';
 import XInvasionLanding from './components/xinvasionLandingPage';
 import XQuizLanding from './components/xQuizLanding'; // Add this import
+import ArmbitionLanding from './components/ArmbitionLanding'; // Add this import
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/xfoundry" element={<XFoundryLanding />} />
         <Route path="/xinvasion" element={<XInvasionLanding />} />
         <Route path="/xquiz" element={<XQuizLanding />} /> {/* Add this route */}
+        <Route path="/armbition" element={<ArmbitionLanding />} /> {/* Add this route */}
       </Routes>
     </Router>
   );
