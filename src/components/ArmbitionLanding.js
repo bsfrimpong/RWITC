@@ -175,7 +175,8 @@ const ArmbitionLanding = () => {
       
       {/* Hero Section - Fixed for mobile responsiveness */}
       <motion.header 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24"
+        style={{ zIndex: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -221,7 +222,7 @@ const ArmbitionLanding = () => {
           ))}
         </div>
 
-        <div className="container mx-auto z-10 text-center max-w-6xl">
+        <div className="container mx-auto z-10 text-center max-w-6xl" style={{ zIndex: 10, position: 'relative' }}>
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
