@@ -26,7 +26,7 @@ function App() {
         <Route path="/armbition" element={<ArmbitionLanding />} /> {/* Add this route */}
       </Routes>
             {/* Add Analytics component here - it will track all routes */}
-            <Analytics />
+         <Analytics />
     </Router>
   );
 }
