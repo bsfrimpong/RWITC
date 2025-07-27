@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Calendar, ChevronRight, Award, Users, Lightbulb, Rocket,
-  Trophy, Zap, ArrowRight, School, BookOpen, Code, Cpu, Wrench,
-  DollarSign, MessageCircle, Building, CheckCircle, PlayCircle, Clock,
-  ChevronDown, Send, Loader, Phone, Mail, MapPin, Star, Target,
-  Battery, Smartphone, Wifi, Recycle, ShoppingCart, Shield
+Award, Users,Rocket,
+  Trophy, Code,  Building, CheckCircle, PlayCircle, Clock,
+  ChevronDown, Send,  Phone, Mail, MapPin,  Target,
 } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/footer';
+
+// Import images
+//import heroStudentsTech from '../images/hero-students-tech.png';
+import studentsCollaboration from '../images/students-collaboration.jpg';
+import professionalMentors from '../images/scanrolltalk.jpg';
+import solarProject from '../images/solar-project.jpg';
+import aiWaste from '../images/ai-waste.jpg';
+import vendorPlatform from '../images/vendor-platform.jpg';
+import communityInstallation from '../images/community-installation.jpg';
+import techPatternBg from '../images/tech-pattern-bg.png';
 
 const ArmbitionLanding = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,7 +43,7 @@ const ArmbitionLanding = () => {
       ],
       impact: 'Free, reliable charging access for community members',
       color: 'from-yellow-400 to-orange-500',
-      image: '/images/solar-project.jpg'
+      image: solarProject
     },
     {
       id: 'ai-waste',
@@ -52,7 +60,7 @@ const ArmbitionLanding = () => {
       ],
       impact: 'First-ever African-trained plastic sorting AI for continental scaling',
       color: 'from-green-400 to-blue-500',
-      image: '/images/ai-waste.jpg'
+      image: vendorPlatform
     },
     {
       id: 'vendor-platform',
@@ -69,7 +77,7 @@ const ArmbitionLanding = () => {
       ],
       impact: 'Improved night economy efficiency and enhanced vendor safety',
       color: 'from-purple-400 to-pink-500',
-      image: '/images/vendor-platform.jpg'
+      image: aiWaste
     }
   ];
 
@@ -173,18 +181,24 @@ const ArmbitionLanding = () => {
     <div className="min-h-screen bg-orange-50 font-nunito">
       <Navbar />
       
-      {/* Hero Section - Fixed for mobile responsiveness */}
+      {/* Hero Section - With professional background image */}
       <motion.header 
         className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24"
-        style={{ zIndex: 1 }}
+        style={{ 
+          zIndex: 1,
+          backgroundImage: `linear-gradient(rgba(234, 88, 12, 0.85), rgba(251, 146, 60, 0.85)), url(${studentsCollaboration})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoaded ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400">
+        {/* Animated gradient overlay for extra depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600/30 via-orange-500/30 to-orange-400/30">
           <motion.div 
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
             animate={{
               x: ['-100%', '100%'],
             }}
@@ -194,32 +208,6 @@ const ArmbitionLanding = () => {
               ease: 'linear'
             }}
           />
-        </div>
-        
-        {/* Floating tech elements - Hidden on mobile for performance */}
-        <div className="hidden md:block absolute inset-0 opacity-10">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-8 h-8"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.3, 0.8, 0.3],
-                rotate: [0, 180, 360]
-              }}
-              transition={{
-                duration: 5 + Math.random() * 5,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            >
-              {[<Code key="code" />, <Cpu key="cpu" />, <Wrench key="wrench" />, <Smartphone key="phone" />][i % 4]}
-            </motion.div>
-          ))}
         </div>
 
         <div className="container mx-auto z-10 text-center max-w-6xl" style={{ zIndex: 10, position: 'relative' }}>
@@ -307,8 +295,16 @@ const ArmbitionLanding = () => {
         </div>
       </motion.header>
 
-      {/* Pride Section - Improved mobile layout */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-yellow-100 to-orange-100">
+      {/* Pride Section - With collaboration background */}
+      <section 
+        className="py-12 sm:py-16 lg:py-20 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(254, 243, 199, 0.95), rgba(255, 237, 213, 0.95)), url(${studentsCollaboration})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-800 mb-4 sm:mb-6 leading-tight">
@@ -324,7 +320,7 @@ const ArmbitionLanding = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/50"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -350,7 +346,7 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Success Stories & Real Projects - Mobile optimized */}
+      {/* Success Stories & Real Projects - With professional mentors background */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
@@ -389,59 +385,81 @@ const ArmbitionLanding = () => {
             </div>
 
             <div className="text-center order-1 lg:order-2">
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white shadow-2xl">
-                <div className="h-32 sm:h-48 bg-white/20 rounded-xl mb-4 flex items-center justify-center">
-                  <PlayCircle className="h-12 w-12 sm:h-16 sm:w-16" />
+              <div 
+                className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden"
+                style={{
+                 backgroundImage: `linear-gradient(rgba(234, 88, 12, 0.9), rgba(251, 146, 60, 0.9)), url(${professionalMentors})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              >
+                <div className="relative z-10">
+                  <div className="h-32 sm:h-48 bg-white/20 rounded-xl mb-4 flex items-center justify-center backdrop-blur-sm">
+                    <PlayCircle className="h-12 w-12 sm:h-16 sm:w-16" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Watch Student Success Stories</h3>
+                  <p className="text-orange-100 mb-4 sm:mb-6 text-sm sm:text-base">
+                    See actual students presenting their projects, explaining how they built them, 
+                    and the impact they're making in their communities.
+                  </p>
+                  <a
+                    href="https://www.youtube.com/@realworldtechic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-full text-sm sm:text-lg transition duration-300 inline-flex items-center shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    <PlayCircle className="mr-2 h-4 w-4 sm:h-6 sm:w-6" />
+                    Watch on YouTube
+                  </a>
+                  <p className="text-orange-200 text-xs sm:text-sm mt-3 sm:mt-4">9 project videos available now</p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Watch Student Success Stories</h3>
-                <p className="text-orange-100 mb-4 sm:mb-6 text-sm sm:text-base">
-                  See actual students presenting their projects, explaining how they built them, 
-                  and the impact they're making in their communities.
-                </p>
-                <a
-                  href="https://www.youtube.com/@realworldtechic"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-full text-sm sm:text-lg transition duration-300 inline-flex items-center shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  <PlayCircle className="mr-2 h-4 w-4 sm:h-6 sm:w-6" />
-                  Watch on YouTube
-                </a>
-                <p className="text-orange-200 text-xs sm:text-sm mt-3 sm:mt-4">9 project videos available now</p>
               </div>
             </div>
           </div>
 
-          {/* Video Gallery Preview - Mobile responsive */}
-          <div className="bg-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white">
+          {/* Video Gallery Preview */}
+          {/* <div className="bg-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white">
             <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Project Highlights</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
               {[
                 {
                   title: 'Solar Charging Stations in Action',
                   description: 'Students demonstrate their solar-powered community charging solutions',
-                  icon: <Battery className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />
+                  icon: <Battery className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+                  image: solarProject
                 },
                 {
                   title: 'AI Waste Sorting Systems',
                   description: 'Young innovators explain their AI models trained on African waste data',
-                  icon: <Cpu className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />
+                  icon: <Cpu className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+                  image: aiWaste
                 },
                 {
                   title: '24-Hour Economy Platforms',
                   description: 'Student teams showcase their digital platforms supporting night vendors',
-                  icon: <Smartphone className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />
+                  icon: <Smartphone className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+                  image: vendorPlatform
                 }
               ].map((video, index) => (
-                <div key={index} className="bg-gray-800 rounded-xl p-4 sm:p-6 hover:bg-gray-700 transition-colors duration-300">
-                  <div className="text-orange-400 mb-3 sm:mb-4 flex justify-center">
-                    {video.icon}
-                  </div>
-                  <h4 className="font-bold text-white mb-2 sm:mb-3 text-center text-sm sm:text-base">{video.title}</h4>
-                  <p className="text-gray-300 text-xs sm:text-sm text-center mb-3 sm:mb-4">{video.description}</p>
-                  <div className="flex justify-center">
-                    <div className="bg-orange-600 rounded-full p-2 sm:p-3">
-                      <PlayCircle className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+                <div 
+                  key={index} 
+                  className="bg-gray-800 rounded-xl p-4 sm:p-6 hover:bg-gray-700 transition-colors duration-300 relative overflow-hidden"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.9)), url("${video.image}")`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                >
+                  <div className="relative z-10">
+                    <div className="text-orange-400 mb-3 sm:mb-4 flex justify-center">
+                      {video.icon}
+                    </div>
+                    <h4 className="font-bold text-white mb-2 sm:mb-3 text-center text-sm sm:text-base">{video.title}</h4>
+                    <p className="text-gray-300 text-xs sm:text-sm text-center mb-3 sm:mb-4">{video.description}</p>
+                    <div className="flex justify-center">
+                      <div className="bg-orange-600 rounded-full p-2 sm:p-3">
+                        <PlayCircle className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -459,11 +477,18 @@ const ArmbitionLanding = () => {
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </a>
             </div>
-          </div>
+          </div> */}
 
-          {/* Testimonial from completed program - Mobile responsive */}
-          <div className="mt-12 sm:mt-16 bg-orange-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
-            <div className="text-center">
+          {/* Testimonial with community installation background */}
+          <div 
+            className="mt-12 sm:mt-16 rounded-2xl sm:rounded-3xl p-6 sm:p-8 relative overflow-hidden"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255, 247, 237, 0.95), rgba(254, 243, 199, 0.95)), url(${communityInstallation})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div className="text-center relative z-10">
               <h3 className="text-xl sm:text-2xl font-bold text-orange-800 mb-4 sm:mb-6">What Parents Are Saying</h3>
               <div className="max-w-3xl mx-auto">
                 <p className="text-lg sm:text-xl text-orange-700 italic mb-4 sm:mb-6">
@@ -486,7 +511,7 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Projects Section - Mobile optimized */}
+      {/* Projects Section - Enhanced with actual project images */}
       <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
@@ -514,12 +539,17 @@ const ArmbitionLanding = () => {
                   <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-start">
                     <div className="text-center lg:text-left">
                       <div className="h-32 sm:h-40 lg:h-48 bg-gray-100 rounded-xl mb-3 sm:mb-4 flex items-center justify-center overflow-hidden">
-                        <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-400">
-                          {project.image ? (
-                            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                          ) : (
-                            <Code className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16" />
-                          )}
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className="text-2xl sm:text-3xl lg:text-4xl text-gray-400 hidden">
+                          <Code className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16" />
                         </div>
                       </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
@@ -590,8 +620,15 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Program Structure - Mobile optimized */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-orange-50">
+      {/* Program Structure - With tech pattern background */}
+      <section 
+        className="py-12 sm:py-16 lg:py-20 relative"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 247, 237, 0.95), rgba(254, 243, 199, 0.95)), url(${techPatternBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-800 mb-4 sm:mb-6 leading-tight">
@@ -614,7 +651,7 @@ const ArmbitionLanding = () => {
               >
                 <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
                   <div className="w-full lg:w-1/3">
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl text-center">
+                    <div className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl text-center border border-white/50">
                       <div className="text-3xl sm:text-4xl font-black text-orange-500 mb-2">{week.week}</div>
                       <h3 className="text-lg sm:text-xl font-bold text-orange-800">{week.title}</h3>
                     </div>
@@ -622,7 +659,7 @@ const ArmbitionLanding = () => {
                   <div className="w-full lg:w-2/3">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {week.activities.map((activity, idx) => (
-                        <div key={idx} className="bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div key={idx} className="bg-white/95 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-white/50">
                           <div className="flex items-center space-x-3">
                             <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-500 rounded-full flex items-center justify-center">
                               <span className="text-white text-xs sm:text-sm font-bold">{idx + 1}</span>
@@ -638,8 +675,8 @@ const ArmbitionLanding = () => {
             ))}
           </div>
 
-          {/* Daily Schedule - Mobile responsive */}
-          <div className="mt-12 sm:mt-16 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl">
+          {/* Daily Schedule */}
+          <div className="mt-12 sm:mt-16 bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl border border-white/50">
             <h3 className="text-xl sm:text-2xl font-bold text-orange-800 mb-4 sm:mb-6 text-center">Daily Schedule (10:30 AM - 3:30 PM)</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {[
@@ -662,7 +699,7 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Locations - Mobile optimized */}
+      {/* Locations - Clean white background */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
@@ -703,7 +740,7 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Pricing Section - Mobile optimized */}
+      {/* Pricing Section - Gradient background */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-600 to-orange-800">
         <div className="container mx-auto px-4">
           <div className="text-center text-white mb-12 sm:mb-16">
@@ -777,8 +814,15 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Why Choose Section - Mobile optimized */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-orange-50">
+      {/* Why Choose Section - Enhanced with subtle background */}
+      <section 
+        className="py-12 sm:py-16 lg:py-20 relative"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255, 247, 237, 0.98), rgba(254, 243, 199, 0.98)), url("/images/tech-pattern-bg.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-orange-800 mb-4 sm:mb-6 leading-tight">
@@ -830,7 +874,7 @@ const ArmbitionLanding = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/50"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -856,9 +900,15 @@ const ArmbitionLanding = () => {
         </div>
       </section>
 
-      {/* Contact Section - Mobile optimized */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4">
+      {/* Contact Section - Dark gradient with subtle pattern */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative">
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'url("/images/tech-pattern-bg.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 leading-tight">
               Ready to Give Your Child This Pride?
@@ -898,7 +948,7 @@ const ArmbitionLanding = () => {
             ].map((contact, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:bg-gray-700 transition-colors duration-300"
+                className="bg-gray-800/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:bg-gray-700/80 transition-colors duration-300 border border-gray-700/50"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -922,7 +972,7 @@ const ArmbitionLanding = () => {
             ))}
           </div>
 
-          <div className="text-center bg-orange-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
+          <div className="text-center bg-orange-600/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8">
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
               Transform Ghana's Future - One Student at a Time
             </h3>
