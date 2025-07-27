@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
 Award, Users,Rocket,
   Trophy, Code,  Building, CheckCircle, PlayCircle, Clock,
-  ChevronDown, Send,  Phone, Mail, MapPin,  Target,
+  ChevronDown, Send,  Phone, Mail, MapPin,  Target, Battery, Shield, Recycle, Zap, Lightbulb, Smartphone, ArrowRight
 } from 'lucide-react';
 import Navbar from '../components/NavBar';
 import Footer from '../components/footer';
@@ -17,6 +17,12 @@ import aiWaste from '../images/ai-waste.jpg';
 import vendorPlatform from '../images/vendor-platform.jpg';
 import communityInstallation from '../images/community-installation.jpg';
 import techPatternBg from '../images/tech-pattern-bg.png';
+import solarWaterProject from '../images/watertalk.jpg';
+import solarIntruderAlert from '../images/solarlight.jpg';
+import smartDesk from '../images/table.jpg';
+import incineratorImage from '../images/incinerator.jpg';
+import biogas from '../images/Biogas.jpg';
+import wasteSeg from '../images/Wasteseg.jpg';
 
 const ArmbitionLanding = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -416,68 +422,158 @@ const ArmbitionLanding = () => {
               </div>
             </div>
           </div>
+          
 
           {/* Video Gallery Preview */}
-          {/* <div className="bg-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white">
-            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Project Highlights</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-              {[
-                {
-                  title: 'Solar Charging Stations in Action',
-                  description: 'Students demonstrate their solar-powered community charging solutions',
-                  icon: <Battery className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
-                  image: solarProject
-                },
-                {
-                  title: 'AI Waste Sorting Systems',
-                  description: 'Young innovators explain their AI models trained on African waste data',
-                  icon: <Cpu className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
-                  image: aiWaste
-                },
-                {
-                  title: '24-Hour Economy Platforms',
-                  description: 'Student teams showcase their digital platforms supporting night vendors',
-                  icon: <Smartphone className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
-                  image: vendorPlatform
-                }
-              ].map((video, index) => (
-                <div 
-                  key={index} 
-                  className="bg-gray-800 rounded-xl p-4 sm:p-6 hover:bg-gray-700 transition-colors duration-300 relative overflow-hidden"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(31, 41, 55, 0.8), rgba(31, 41, 55, 0.9)), url("${video.image}")`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
-                  <div className="relative z-10">
-                    <div className="text-orange-400 mb-3 sm:mb-4 flex justify-center">
-                      {video.icon}
-                    </div>
-                    <h4 className="font-bold text-white mb-2 sm:mb-3 text-center text-sm sm:text-base">{video.title}</h4>
-                    <p className="text-gray-300 text-xs sm:text-sm text-center mb-3 sm:mb-4">{video.description}</p>
-                    <div className="flex justify-center">
-                      <div className="bg-orange-600 rounded-full p-2 sm:p-3">
-                        <PlayCircle className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="bg-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white">
+  <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">9 Real Projects from Our Pilot Schools</h3>
+  
+  {/* Carousel Container */}
+  <div className="relative overflow-hidden rounded-xl mb-6">
+    <motion.div 
+      className="flex"
+      animate={{ 
+        x: [0, -(320 * 9)] // 320px per card (280px width + 40px margins)
+      }}
+      transition={{ 
+        duration: 30, // Slower speed - 30 seconds for full cycle
+        repeat: Infinity, 
+        ease: "linear",
+        repeatType: "loop" // Seamless loop without pause
+      }}
+    >
+      {/* Duplicate the array to create seamless infinite scroll */}
+      {[...Array(2)].map((_, duplicateIndex) => 
+        [
+          {
+            title: 'Fingerprint Attendance System',
+            school: 'Prempeh College',
+            description: 'Automated student attendance tracking with biometric verification',
+            icon: <Users className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: professionalMentors
+          },
+          {
+            title: 'Smart Solar Water Management',
+            school: 'Prempeh College', 
+            description: 'Automatic water tap control system with bucket filling capability',
+            icon: <Battery className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: solarWaterProject
+          },
+          {
+            title: 'Solar Intruder Alert System',
+            school: 'Serwaa Nyarko Girls\' SHS',
+            description: 'Offline security system that alerts guards automatically',
+            icon: <Shield className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: solarIntruderAlert
+          },
+          {
+            title: 'Adjustable Smart Desk',
+            school: 'Serwaa Nyarko Girls\' SHS',
+            description: 'Remote-controlled height-adjustable desk made from plastic waste',
+            icon: <Target className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: smartDesk
+          },
+          {
+            title: 'Sanitary Pad Incinerator',
+            school: 'Serwaa Nyarko Girls\' SHS',
+            description: 'Eco-friendly waste management solution for feminine hygiene',
+            icon: <Recycle className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: incineratorImage 
+          },
+          {
+            title: 'Biogas Cooking System',
+            school: 'Serwaa Nyarko Girls\' SHS',
+            description: 'Sustainable cooking fuel system for school kitchen operations',
+            icon: <Zap className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: biogas
+          },
+          {
+            title: 'Smart Waste Segregation Bin',
+            school: 'Serwaa Nyarko Girls\' SHS',
+            description: 'Intelligent waste sorting system for better recycling',
+            icon: <Building className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: wasteSeg
+          },
+          {
+            title: 'Stadium Ticket Booking System',
+            school: 'Alpha Beta Academy',
+            description: 'USSD & MoMo integrated booking with seat matching and tracking',
+            icon: <Smartphone className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: techPatternBg
+          },
+          {
+            title: 'Kids Smart Street Light',
+            school: 'RABDEE Academy',
+            description: 'Intelligent lighting system designed for child safety',
+            icon: <Lightbulb className="h-8 w-8 sm:h-10 sm:w-10 mx-auto" />,
+            image: professionalMentors
+          }
+        ].map((project, index) => (
+          <motion.div 
+            key={`${duplicateIndex}-${index}`}
+            className="flex-shrink-0 w-72 mx-5 bg-gray-800 rounded-xl p-4 sm:p-6 transition-all duration-300 relative overflow-hidden cursor-pointer group"
+            style={{
+              backgroundImage: `linear-gradient(rgba(31, 41, 55, 0.6), rgba(31, 41, 55, 0.7)), url(${project.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            onClick={() => window.open('https://www.youtube.com/@realworldtechic', '_blank')}
+          >
+            {/* Hover overlay for better image visibility */}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300 rounded-xl"></div>
             
-            <div className="text-center mt-6 sm:mt-8">
-              <a
-                href="https://www.youtube.com/@realworldtechic"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full text-sm sm:text-lg transition duration-300 inline-flex items-center"
-              >
-                View All Project Videos
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              </a>
+            <div className="relative z-10">
+              <div className="text-orange-400 mb-3 sm:mb-4 flex justify-center transform group-hover:scale-110 transition-transform duration-300">
+                {project.icon}
+              </div>
+              <div className="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3 text-center shadow-lg">
+                {project.school}
+              </div>
+              <h4 className="font-bold text-white mb-2 sm:mb-3 text-center text-sm sm:text-base leading-tight">
+                {project.title}
+              </h4>
+              <p className="text-gray-200 text-xs sm:text-sm text-center mb-3 sm:mb-4 leading-relaxed">
+                {project.description}
+              </p>
+              <div className="flex justify-center">
+                <div className="bg-orange-600 rounded-full p-2 sm:p-3 shadow-lg group-hover:bg-orange-500 transition-colors duration-300">
+                  <PlayCircle className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
+                </div>
+              </div>
             </div>
-          </div> */}
+          </motion.div>
+        ))
+      )}
+    </motion.div>
+  </div>
+  
+  {/* Pause indicator */}
+  <div className="text-center mb-4">
+    <p className="text-gray-400 text-xs">
+      Hover over any project to learn more • Click to watch videos
+    </p>
+  </div>
+  
+  <div className="text-center">
+    <a 
+      href="https://www.youtube.com/@realworldtechic"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-lg transition duration-300 inline-flex items-center shadow-lg hover:shadow-xl transform hover:scale-105"
+    >
+      <PlayCircle className="mr-2 h-5 w-5" />
+      View All 9 Project Videos
+      <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+    </a>
+    <p className="text-orange-300 text-xs sm:text-sm mt-3">
+      Real students presenting their innovative solutions
+    </p>
+  </div>
+</div>
 
           {/* Testimonial with community installation background */}
           <div 
