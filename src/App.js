@@ -9,6 +9,7 @@ import XFoundryLanding from './components/xfoundryLandingPage';
 import XInvasionLanding from './components/xinvasionLandingPage';
 import XQuizLanding from './components/xQuizLanding'; // Add this import
 import ArmbitionLanding from './components/ArmbitionLanding'; // Add this import
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/xquiz" element={<XQuizLanding />} /> {/* Add this route */}
         <Route path="/armbition" element={<ArmbitionLanding />} /> {/* Add this route */}
       </Routes>
+            {/* Add Analytics component here - it will track all routes */}
+            <Analytics />
     </Router>
   );
 }
